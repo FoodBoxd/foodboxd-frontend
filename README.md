@@ -35,11 +35,13 @@ git clone https://github.com/FoodBoxd/foodboxd-frontend.git
 cd foodboxd-frontend
 ```
 
-### 2 Instalar as dependências
+### 2 Instalar as dependências e pacotes
 Instalar a pasta node_modules
 
 ```bash
 npm install
+npm install axios
+npm install react-icons
 ```
 
 ### 3 Configurar a URL da API
