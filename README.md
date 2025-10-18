@@ -1,16 +1,57 @@
-# React + Vite
+# 💻 Foodboxd Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este é o repositório do **frontend** do projeto **Foodboxd**, construído com **React** e **Vite**.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Tecnologias Utilizadas
 
-## React Compiler
+- **Framework:** React (com JavaScript)
+- **Build Tool:** Vite
+- **Comunicação API:** Axios
+- **Gerenciamento de Pacotes:** npm
+- **Versão do Node:** LTS
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 📋 Pré-requisitos
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Para rodar local, você deve ter:
+
+- **Node.js** (LTS)
+- **npm** (instalado automaticamente com o Node.js)
+- O **[foodboxd-backend](https://github.com/FoodBoxd/foodboxd-backend)** deve estar rodando para que as chamadas de API funcionem corretamente.
+
+---
+
+## ⚙️ Configuração e Inicialização
+
+Siga os passos abaixo para configurar e rodar o frontend na sua máquina:
+
+### 1️ Clonar o Repositório
+
+```bash
+git clone https://github.com/FoodBoxd/foodboxd-frontend.git
+cd foodboxd-frontend
+```
+
+### 2 Instalar as dependências
+Instalar a pasta node_modules
+
+```bash
+npm install
+```
+
+### 3 Configurar a URL da API
+No arquivo api.js, definir a porta que o back está rodando
+
+```javascript
+const api = axios.create({
+  baseURL: 'http://localhost:PORTA/api/'
+})
+```
+
+### 4 Iniciar o Front
+```bash
+npm run dev
+```
