@@ -42,6 +42,7 @@ Instalar a pasta node_modules
 npm install
 npm install axios
 npm install react-icons
+npm install react-router-dom
 ```
 
 ### 3 Configurar a URL da API

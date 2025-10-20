@@ -1,14 +1,17 @@
 import './App.css'
-import UserForm from './components/UserForm';
+import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
+import HomePage from './pages/HomePage'
+import LoginPage from './pages/LoginPage'
+import Navigation from './components/Navigation'
+import { Outlet } from 'react-router-dom'
 
 function App() {
   return (
     <>
-      abacate texto normal
-
-      <div>
-        <UserForm />
-      </div>
+      <Navigation />
+      <main>
+        <Outlet />
+      </main>
     </>
   )
 }
