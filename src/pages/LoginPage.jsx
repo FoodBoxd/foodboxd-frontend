@@ -4,7 +4,7 @@ import UserForm from '../components/UserForm'
 
 function LoginPage() {
   return (
-    <div>
+    <div className="login-page">
       <UserForm />
     </div>
   )
