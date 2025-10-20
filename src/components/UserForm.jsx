@@ -1,39 +1,45 @@
-import { useState } from "react"
-import api from "../api"
+import { useNavigate } from 'react-router-dom'
+import { useState } from 'react'
+import api from '../api'
+import './UserForm.css'
+import logo from '../assets/AppLogo.png'
 
 function UserForm() {
   const [name, setName] = useState('')
-  const [age, setAge] = useState('')
+  const [birthDate, setBirthDate] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
   const [message, setMessage] = useState('')
 
-  const onSubmit = async(event) => {
+  const navigate = useNavigate()
+
+  const onSubmit = async (event) => {
     event.preventDefault()
 
     const newUser = {
-      name: name,
-      age: parseInt(age)
+      name,
+      birthDate,
+      email,
+      password,
     }
 
-    try{
+    try {
+      await api.post('users/create', newUser)
 
-      await api.post('users', newUser)
-
-      setMessage('Usuário criado com sucesso!')
-      setName('')
-      setAge('')
-
-    } catch (error){
+      navigate('/')
+    } catch (error) {
       console.log(`Erro na criação de usuário: ${error}`)
-      setMessage("Falha ao criar usuário. Verifique o console.");
+      setMessage('Falha ao criar usuário. Verifique o console.')
     }
   }
 
-  return(
-    <div>
-      <h2>Adicionar Usuário</h2>
+  return (
+    <div id="createUserCard">
+      <img src={logo} alt="Logo" />
+      <h2>Criar nova conta</h2>
 
-      <form onSubmit={onSubmit}>
+      <form id="userForm" onSubmit={onSubmit}>
         <label htmlFor="nameInput">Nome:</label>
         <input
           id="nameInput"
@@ -42,21 +48,35 @@ function UserForm() {
           onChange={(e) => setName(e.target.value)}
         />
 
-        <label htmlFor="ageInput">Idade:</label>
+        <label htmlFor="ageInput">Data de Nascimento:</label>
         <input
           id="ageInput"
-          type="text"
-          value={age}
-          onChange={(e) => setAge(e.target.value)}
+          type="date"
+          value={birthDate}
+          onChange={(e) => setBirthDate(e.target.value)}
         />
 
-        <button type="submit">
-          Criar usuário
-        </button>
+        <label htmlFor="emailInput">E-mail:</label>
+        <input
+          id="emailInput"
+          type="email"
+          required
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+
+        <label htmlFor="passwordInput">Senha:</label>
+        <input
+          id="passwordInput"
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+
+        <button type="submit">Concluir</button>
       </form>
 
       {message && <p>{message}</p>}
-
     </div>
   )
 }
