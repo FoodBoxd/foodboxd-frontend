@@ -6,7 +6,8 @@
   margin: 0;
   padding: 1rem;
   border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 4px 24px rgba(103, 103, 103, 0.46);
+  /* box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3); */
 }
 
 #createUserCard img {
@@ -21,6 +22,11 @@
   margin: 0 0 1rem 0;
   font-weight: 700;
   font-size: clamp(1.25rem, 4vw, 2rem);
+}
+
+#createUserCard p {
+  text-align: center;
+  margin-top: 0.5rem;
 }
 
 #userForm {
@@ -57,6 +63,7 @@
 #userForm button {
   width: 100%;
   background-color: #37a762;
+  margin-top: 20px;
   color: #fff;
   font-weight: 700;
   border: none;
@@ -66,11 +73,6 @@
 
 #userForm button:hover {
   background-color: #2e8b50;
-}
-
-#createUserCard p {
-  text-align: center;
-  margin-top: 0.5rem;
 }
 
 @media (min-width: 480px) {
