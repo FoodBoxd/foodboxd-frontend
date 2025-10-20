@@ -39,7 +39,7 @@ cd foodboxd-frontend
 Instalar a pasta node_modules
 
 ```bash
-npm install
+npm ci
 npm install axios
 npm install react-icons
 npm install react-router-dom
