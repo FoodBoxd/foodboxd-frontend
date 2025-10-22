@@ -5,8 +5,6 @@ import './UserForm.css'
 import logo from '../assets/AppLogo.png'
 
 function UserForm() {
-  const [name, setName] = useState('')
-  const [birthDate, setBirthDate] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
@@ -18,44 +16,26 @@ function UserForm() {
     event.preventDefault()
 
     const newUser = {
-      name,
-      birthDate,
       email,
-      password,
+      password
     }
 
     try {
-      await api.post('users/create', newUser)
+      await api.post('users/login', newUser)
 
       navigate('/')
     } catch (error) {
-      console.log(`Erro na criação de usuário: ${error}`)
-      setMessage('Falha ao criar usuário. Verifique o console.')
+      console.log(`Erro no login de usuário: ${error}`)
+      setMessage('Falha ao logar usuário. Verifique o console.')
     }
   }
 
   return (
     <div id="createUserCard">
       <img src={logo} alt="Logo" />
-      <h2>Criar nova conta</h2>
+      <h2>LogIn</h2>
 
       <form id="userForm" onSubmit={onSubmit}>
-        <label htmlFor="nameInput">Nome:</label>
-        <input
-          id="nameInput"
-          type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-
-        <label htmlFor="ageInput">Data de Nascimento:</label>
-        <input
-          id="ageInput"
-          type="date"
-          value={birthDate}
-          onChange={(e) => setBirthDate(e.target.value)}
-        />
-
         <label htmlFor="emailInput">E-mail:</label>
         <input
           id="emailInput"
@@ -73,7 +53,8 @@ function UserForm() {
           onChange={(e) => setPassword(e.target.value)}
         />
 
-        <button type="submit">Concluir</button>
+        <button type="submit">Entrar</button>
+        
       </form>
 
       {message && <p>{message}</p>}
