@@ -1,13 +1,13 @@
 import React from 'react'
-import LoginForm from '../components/LoginForm.jsx'
+import UserForm from '../components/UserForm'
 // Importe seu componente de formulário de login aqui
 
-function LoginPage() {
+function RegisterPage() {
   return (
     <div className="login-page">
-      <LoginForm />
+      <UserForm />
     </div>
   )
 }
 
-export default LoginPage
+export default RegisterPage
