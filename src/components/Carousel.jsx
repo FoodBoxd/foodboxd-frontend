@@ -8,12 +8,16 @@ export default function Carousel({
   showArrows = true,
   visibleCount = 3,
   gap = 12,
-  itemWidth = 220, 
+  itemWidth = 220,
+  autoPlay = true,
+  autoPlayInterval = 2500,
+  autoPauseOnHover = true,
 }) {
   const listRef = useRef(null);
   const [isScrollable, setIsScrollable] = useState(false);
   const [atStart, setAtStart] = useState(true);
   const [atEnd, setAtEnd] = useState(false);
+  const [paused, setPaused] = useState(false);
 
   const widthPx = useMemo(
     () => (typeof itemWidth === "number" ? `${itemWidth}px` : itemWidth),
@@ -28,6 +32,7 @@ export default function Carousel({
   const baseWidthRef = useRef(0);
   const adjustingRef = useRef(false);
   const scrollEndTimerRef = useRef(null);
+  const interactionPauseUntilRef = useRef(0);
 
   const stepRef = useRef(0);
   useEffect(() => {
@@ -96,11 +101,36 @@ export default function Carousel({
   const handleScrollBy = (dir) => {
     const el = listRef.current;
     if (!el || !cards.length) return;
+    interactionPauseUntilRef.current = Date.now() + autoPlayInterval;
     const next = useInfinite
       ? el.scrollLeft + dir * stepRef.current
       : Math.max(0, Math.min(el.scrollLeft + dir * stepRef.current, el.scrollWidth - el.clientWidth));
     el.scrollTo({ left: next, behavior: "smooth" });
   };
+
+  // autoplay suave (respeita hover e interações)
+  useEffect(() => {
+    if (!autoPlay) return;
+    const el = listRef.current;
+    if (!el) return;
+
+    const prefersReduced =
+      typeof window !== "undefined" &&
+      window.matchMedia &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReduced) return;
+
+    const tick = () => {
+      if (!el) return;
+      if (paused) return;
+      if (Date.now() < interactionPauseUntilRef.current) return;
+      if (!isScrollable && !useInfinite) return;
+      el.scrollBy({ left: stepRef.current, behavior: "smooth" });
+    };
+
+    const id = window.setInterval(tick, Math.max(1200, autoPlayInterval));
+    return () => window.clearInterval(id);
+  }, [autoPlay, autoPlayInterval, paused, isScrollable, useInfinite, gap, itemWidth, cards.length]);
 
   return (
     <section className="carousel-section">
@@ -128,6 +158,8 @@ export default function Carousel({
             "--viewport-cards": 4, 
           }}
           onScroll={handleScroll}
+          onMouseEnter={autoPauseOnHover ? () => setPaused(true) : undefined}
+          onMouseLeave={autoPauseOnHover ? () => setPaused(false) : undefined}
         >
           {cards.length === 0 ? (
             <EmptyState widthPx={widthPx} />
