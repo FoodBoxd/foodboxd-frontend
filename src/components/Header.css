@@ -1,0 +1,87 @@
+:root {
+  --header-bg: #14181c;
+  --header-border: #2a3440;
+  --text: #e6edf3;
+  --text-muted: #9fb3c8;
+  --text-hover: #d6e2ee;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  background: var(--header-bg);
+  border-bottom: 1px solid var(--header-border);
+}
+
+.header-container {
+  height: 56px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  position: relative; /* allow centering nav absolutely */
+}
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.nav-link {
+  color: var(--text-muted);
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  padding: 6px 4px;
+}
+.nav-link:hover,
+.nav-link.active {
+  color: var(--text-hover);
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logout-button {
+  background-color: red;
+  color: #f8f8f8;
+  font-weight: 700;
+  padding: 8px 14px;
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+/* keep text color on hover/visited and avoid global anchor hover styles */
+.logout-button:hover,
+.logout-button:visited,
+.logout-button:active {
+  color: #f8f8f8;
+  text-decoration: none;
+}
+
+.logo {
+    height: 2em;
+    margin-top: 0.5em;
+    padding: 0.5em;
+    will-change: filter;
+    transition: filter 300ms;
+}
+
+@media (max-width: 860px) {
+  .header-nav { display: none; }
+}
