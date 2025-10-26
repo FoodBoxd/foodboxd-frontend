@@ -1,31 +1,31 @@
-import React, { useState, useEffect } from "react";
-import Carousel from "../components/Carousel";
-import Header from "../components/Header";
-import api from "../api";
+import React, { useState, useEffect } from 'react'
+import Carousel from '../components/Carousel'
+import Header from '../components/Header'
+import api from '../api'
 
 export default function HomePage() {
-  const [dishes, setDishes] = useState([]);
+  const [dishes, setDishes] = useState([])
 
   useEffect(() => {
     const getDishes = async () => {
       try {
-        const response = await api.get("dishes");
+        const response = await api.get('dishes')
         const formattedDishes = response.data.map((dish) => ({
           id: dish.dishId,
-          imageUrl: `data:image/jpeg;base64,${dish.photo}`,
+          imageUrl: dish.photo,
           name: dish.name,
-        }));
-        setDishes(formattedDishes);
+        }))
+        setDishes(formattedDishes)
       } catch (error) {
-        console.error("Error fetching dishes:", error);
+        console.error('Error fetching dishes:', error)
       }
-    };
+    }
 
+    getDishes()
+  }, [])
 
-    getDishes();
-  }, []);
+  console.log(dishes)
 
-  console.log(dishes);
   return (
     <div>
       <Header />
@@ -33,8 +33,8 @@ export default function HomePage() {
         title="Em destaque"
         items={dishes}
         itemWidth={170}
-        onItemClick={(item) => console.log("Clicked:", item)}
+        onItemClick={(item) => console.log('Clicked:', item)}
       />
     </div>
-  );
+  )
 }
