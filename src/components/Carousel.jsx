@@ -26,7 +26,7 @@ export default function Carousel({
 
   const cards = Array.isArray(items) ? items : [];
   const useInfinite = cards.length > 0;
-  const copiesCount = useInfinite ? 3 : 1;
+  const copiesCount = useInfinite ? 10 : 1;
 
   // controles para wrap infinito
   const baseWidthRef = useRef(0);
@@ -155,14 +155,14 @@ export default function Carousel({
           style={{
             "--gap": `${gap}px`,
             "--card-width": widthPx,
-            "--viewport-cards": 4, 
+            "--viewport-cards": 4,
           }}
           onScroll={handleScroll}
           onMouseEnter={autoPauseOnHover ? () => setPaused(true) : undefined}
           onMouseLeave={autoPauseOnHover ? () => setPaused(false) : undefined}
         >
           {cards.length === 0 ? (
-            <EmptyState widthPx={widthPx} />
+            <div widthPx={widthPx} />
           ) : (
             Array.from({ length: copiesCount }).map((_, copyIdx) =>
               cards.map((item, idx) => (
