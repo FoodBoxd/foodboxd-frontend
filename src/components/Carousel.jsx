@@ -1,12 +1,12 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import "./Carousel.css";
+import Card from "./CarouselCard";
 
 export default function Carousel({
   items = [],
   title,
   onItemClick,
   showArrows = true,
-  visibleCount = 3,
   gap = 12,
   itemWidth = 220,
   autoPlay = true,
@@ -15,8 +15,6 @@ export default function Carousel({
 }) {
   const listRef = useRef(null);
   const [isScrollable, setIsScrollable] = useState(false);
-  const [atStart, setAtStart] = useState(true);
-  const [atEnd, setAtEnd] = useState(false);
   const [paused, setPaused] = useState(false);
 
   const widthPx = useMemo(
@@ -26,7 +24,7 @@ export default function Carousel({
 
   const cards = Array.isArray(items) ? items : [];
   const useInfinite = cards.length > 0;
-  const copiesCount = useInfinite ? 10 : 1;
+  const copiesCount = useInfinite ? 3 : 1;
 
   // controles para wrap infinito
   const baseWidthRef = useRef(0);
@@ -48,8 +46,6 @@ export default function Carousel({
       const base = copiesCount > 1 ? total / copiesCount : total;
       baseWidthRef.current = base;
       setIsScrollable(base > el.clientWidth + 2);
-      setAtStart(el.scrollLeft <= 1);
-      setAtEnd(el.scrollLeft >= el.scrollWidth - el.clientWidth - 1);
     };
 
     const half = stepRef.current / 2;
@@ -75,8 +71,6 @@ export default function Carousel({
   const handleScroll = () => {
     const el = listRef.current;
     if (!el) return;
-    setAtStart(el.scrollLeft <= 1);
-    setAtEnd(el.scrollLeft >= el.scrollWidth - el.clientWidth - 1);
 
     if (!useInfinite || adjustingRef.current) return;
 
@@ -155,15 +149,12 @@ export default function Carousel({
           style={{
             "--gap": `${gap}px`,
             "--card-width": widthPx,
-            "--viewport-cards": 4,
           }}
           onScroll={handleScroll}
           onMouseEnter={autoPauseOnHover ? () => setPaused(true) : undefined}
           onMouseLeave={autoPauseOnHover ? () => setPaused(false) : undefined}
         >
-          {cards.length === 0 ? (
-            <div widthPx={widthPx} />
-          ) : (
+          {cards.length === 0 ? null : (
             Array.from({ length: copiesCount }).map((_, copyIdx) =>
               cards.map((item, idx) => (
                 <Card
@@ -193,45 +184,7 @@ export default function Carousel({
   );
 }
 
-/* ---------- Subcomponentes ---------- */
-
-function Card({ item, widthPx, onClick }) {
-  const { imageUrl, name } = item || {};
-  const [imgOk, setImgOk] = useState(true);
-
-  return (
-    <div
-      className="carousel-card"
-      style={widthPx && widthPx !== "auto" ? { width: widthPx } : undefined}
-      role={onClick ? "button" : undefined}
-      tabIndex={onClick ? 0 : undefined}
-      onClick={onClick}
-      onKeyDown={(e) => {
-        if (!onClick) return;
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          onClick();
-        }
-      }}
-    >
-      <div className="poster" aria-hidden={!imageUrl}>
-        {imgOk && imageUrl ? (
-          <img
-            src={imageUrl}
-            alt={name ? `Poster de ${name}` : "Poster"}
-            onError={() => setImgOk(false)}
-          />
-        ) : (
-          <div className="poster-fallback" />
-        )}
-      </div>
-
-      <div className="meta">
-          {name || "—"}
-      </div>
-    </div>
-  );
-}
+/* Card foi extraído para src/components/CarouselCard.jsx */
 
 function ChevronLeft() {
   return (

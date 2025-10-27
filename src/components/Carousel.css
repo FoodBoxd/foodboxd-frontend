@@ -85,21 +85,7 @@
   border-radius: 0px 0px 8px 8px;
 }
 
-.avatar {
-  width: 22px;
-  height: 22px;
-  border-radius: 50%;
-  object-fit: cover;
-  background: #3a3f44;
-}
-
-.username {
-  color: #cfd6dc;
-  font-size: 0.85rem;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
+/* avatar/username styles removed - not used by current card markup */
 
 .carousel-nav {
   position: static;
@@ -123,8 +109,4 @@
 .carousel-nav.side.left { margin-right: 4px; }
 .carousel-nav.side.right { margin-left: 4px; }
 
-@keyframes shimmer {
-  100% {
-    transform: translateX(100%);
-  }
-}
+/* removed unused keyframes */
