@@ -6,6 +6,7 @@ export default function Header() {
   return (
     <header className="site-header" role="banner">
       <div className="header-container">
+        {/* TODO: usar navigator */}
         <div className="header-left">
           <img src={foodLogo} className="logo" alt="Foodboxd logo" />
         </div>

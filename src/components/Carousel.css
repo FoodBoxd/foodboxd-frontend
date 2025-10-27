@@ -1,6 +1,5 @@
 .carousel-section {
   display: block;
-  width: 100%;
   margin: 1.5rem auto;
 }
 
@@ -26,7 +25,7 @@
   gap: var(--gap, 12px);
   grid-auto-columns: var(--card-width, 220px);
   justify-content: start;
-  overflow-x: auto; 
+  overflow-x: auto;
   overflow-y: hidden;
   scroll-snap-type: x mandatory;
   /* 3 inteiros + 2 meios = 4 larguras totais visíveis */
@@ -36,15 +35,16 @@
   ));
   margin: 0;
   padding: 0;
+  scrollbar-width: none;
 }
 
-.carousel-list { scrollbar-width: none; }
-.carousel-list::-webkit-scrollbar { display: none; }
 
 .carousel-card {
+  padding-top: 1vw;
   scroll-snap-align: start;
   user-select: none;
   cursor: pointer;
+  width: var(--card-width, 220px);
 }
 
 .poster {
@@ -52,9 +52,8 @@
   width: 100%;
   aspect-ratio: 2 / 3;
   background: #1e1e1e;
-  border-radius: 8px;
+  border-radius: 8px 8px 0px 0px;
   overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
   transition: transform 200ms ease, box-shadow 200ms ease;
 }
 
@@ -71,20 +70,19 @@
   background: linear-gradient(135deg, #292929, #1b1b1b);
 }
 
-.carousel-card:hover .poster {
+.carousel-card:hover{
   transform: translateY(-3px);
-  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.45);
 }
 
 .meta {
-  display: grid;
-  grid-template-columns: 22px 1fr;
+  background-color: #2b2f33;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: var(--card-width, 220px);
   align-items: center;
   gap: 8px;
-  margin-top: 8px;
-  padding: 6px 8px;
-  background: #2b2f33;
-  border-radius: 8px;
+  padding: 6px 0px;
+  border-radius: 0px 0px 8px 8px;
 }
 
 .avatar {
@@ -102,12 +100,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.carousel-card {
-  scroll-snap-align: start;
-  user-select: none;
-  cursor: pointer;
-  width: var(--card-width, 220px);
-}
+
 .carousel-nav {
   position: static;
   background: #2b2f33;

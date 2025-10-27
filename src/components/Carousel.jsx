@@ -227,9 +227,7 @@ function Card({ item, widthPx, onClick }) {
       </div>
 
       <div className="meta">
-        <span className="name" title={name}>
           {name || "—"}
-        </span>
       </div>
     </div>
   );

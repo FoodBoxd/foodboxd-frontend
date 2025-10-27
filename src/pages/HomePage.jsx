@@ -24,8 +24,6 @@ export default function HomePage() {
     getDishes()
   }, [])
 
-  console.log(dishes)
-
   return (
     <div>
       <Header />
