@@ -28,7 +28,6 @@
   overflow-x: auto;
   overflow-y: hidden;
   scroll-snap-type: x mandatory;
-  /* 3 inteiros + 2 meios = 4 larguras totais visíveis */
   width: min(100%, calc(
     var(--card-width, 220px) * 4 +
     var(--gap, 12px) * 3
@@ -85,8 +84,6 @@
   border-radius: 0px 0px 8px 8px;
 }
 
-/* avatar/username styles removed - not used by current card markup */
-
 .carousel-nav {
   position: static;
   background: #2b2f33;
@@ -108,5 +105,3 @@
 .carousel-nav:disabled { opacity: 0.4; cursor: default; }
 .carousel-nav.side.left { margin-right: 4px; }
 .carousel-nav.side.right { margin-left: 4px; }
-
-/* removed unused keyframes */
