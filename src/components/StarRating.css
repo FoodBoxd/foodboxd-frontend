@@ -1,0 +1,11 @@
+.star-rating {
+  display: flex;
+  flex-direction: row;
+  color: #37a762; /* Cor verde principal (UserForm.css button) */
+}
+
+.star-svg {
+  width: 1.25em; /* Tamanho da estrela (relativo ao font-size) */
+  height: 1.25em;
+  fill: currentColor;
+}

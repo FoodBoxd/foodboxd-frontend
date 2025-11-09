@@ -1,0 +1,53 @@
+.review-section {
+  margin-top: 2rem;
+}
+
+.review-section h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #fff;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--header-border, #2a3440); /* Reusa variável do Header.css */
+}
+
+.review-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.review-card {
+  background-color: #242424; /* Baseado no UserForm.css */
+  border: 1px solid #3a3a3a;
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.review-user {
+  font-weight: 600;
+  color: #fff;
+}
+
+/* O estilo .review-score não é mais necessário,
+   pois foi substituído por StarRating */
+
+.review-comment {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #cdd9e5;
+  margin: 0;
+}
+
+.no-reviews {
+  color: #9fb3c8; /* muted */
+  font-style: italic;
+}
