@@ -2,9 +2,12 @@ import React, { useState, useEffect } from 'react'
 import Carousel from '../components/Carousel'
 import Header from '../components/Header'
 import api from '../api'
+import { useNavigate } from 'react-router-dom'
 
 export default function HomePage() {
   const [dishes, setDishes] = useState([])
+
+  const navigate = useNavigate()
 
   useEffect(() => {
     const getDishes = async () => {
@@ -31,7 +34,7 @@ export default function HomePage() {
         title="Em destaque"
         items={dishes}
         itemWidth={170}
-        onItemClick={(item) => console.log('Clicked:', item)}
+        onItemClick={item => navigate(`/dish/${item.id}`)}
       />
     </div>
   )

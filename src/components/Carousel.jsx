@@ -26,7 +26,6 @@ export default function Carousel({
   const useInfinite = cards.length > 0;
   const copiesCount = useInfinite ? 3 : 1;
 
-  // controles para wrap infinito
   const baseWidthRef = useRef(0);
   const adjustingRef = useRef(false);
   const scrollEndTimerRef = useRef(null);
