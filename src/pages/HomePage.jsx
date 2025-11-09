@@ -9,8 +9,8 @@ export default function HomePage() {
   useEffect(() => {
     const getDishes = async () => {
       try {
-        const response = await api.get('dishes')
-        const formattedDishes = response.data.map((dish) => ({
+        const { data } = await api.get('dishes')
+        const formattedDishes = data.map((dish) => ({
           id: dish.dishId,
           imageUrl: dish.photo,
           name: dish.name,
