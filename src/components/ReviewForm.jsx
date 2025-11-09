@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import api from '../api'
-import './AddReviewForm.css'
+import './ReviewForm.css'
 
 // Componente de estrela individual para o formulário
 const StarInput = ({ filled, onClick, onMouseEnter, onMouseLeave }) => (
@@ -24,8 +24,8 @@ const StarInput = ({ filled, onClick, onMouseEnter, onMouseLeave }) => (
 )
 
 export default function AddReviewForm({ dishId, userId, onSubmitSuccess }) {
-  const [score, setScore] = useState(0) // Nota atual (0 a 5)
-  const [hoverScore, setHoverScore] = useState(0) // Nota do hover
+  const [score, setScore] = useState(0)
+  const [hoverScore, setHoverScore] = useState(0)
   const [comment, setComment] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [error, setError] = useState(null)

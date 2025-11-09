@@ -1,15 +1,16 @@
 import React from 'react';
-import StarRating from './StarRating'; // Importa o novo componente
+import StarRating from './StarRating';
 import './ReviewSection.css';
+import AddReviewForm from './ReviewForm';
 
 export default function ReviewSection({ ratings, dishId, onReviewSubmitted }) {
   return (
     <section className="review-section">
       <h2>Avaliações</h2>
-      <AddReviewForm 
-        dishId={dishId} 
-        userId={1} // !! SIMULAÇÃO: O ID do usuário logado (ex: 1) deve vir do contexto de autenticação
-        onSubmitSuccess={onReviewSubmitted} 
+      <AddReviewForm
+        dishId={dishId}
+        userId={1}
+        onSubmitSuccess={onReviewSubmitted}
       />
       <div className="review-list">
         {(!ratings || ratings.length === 0) ? (
@@ -19,7 +20,6 @@ export default function ReviewSection({ ratings, dishId, onReviewSubmitted }) {
             <div key={rating.ratingId} className="review-card">
               <div className="review-header">
                 <span className="review-user">{rating.user?.name || 'Anônimo'}</span>
-                {/* USA O COMPONENTE DE ESTRELAS */}
                 <StarRating score={rating.score} />
               </div>
               <p className="review-comment">{rating.comment}</p>

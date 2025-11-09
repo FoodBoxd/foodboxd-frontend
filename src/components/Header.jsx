@@ -6,22 +6,20 @@ export default function Header() {
   return (
     <header className="site-header" role="banner">
       <div className="header-container">
-        {/* TODO: usar navigator */}
         <div className="header-left">
           <img src={foodLogo} className="logo" alt="Foodboxd logo" />
         </div>
 
         <nav className="header-nav" aria-label="Primary">
-          <NavLink to="/" className="nav-link">
-            Pratos
+          <NavLink to="/home" className="nav-link">
+            Início
           </NavLink>
           <NavLink to="/" className="nav-link">
-            Listas
+            Receitas
           </NavLink>
         </nav>
 
         <div className="header-right">
-          {/* botão de pesquisar depois */}
           <Link to="/login" className="logout-button">
             Sair
           </Link>

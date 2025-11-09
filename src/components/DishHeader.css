@@ -3,18 +3,18 @@
   flex-direction: row;
   gap: 1.5rem;
   padding-bottom: 1.5rem;
-  border-bottom: 1px solid var(--header-border, #2a3440); /* Reusa variável do Header.css */
+  border-bottom: 1px solid var(--header-border, #2a3440);
 }
 
 .dish-poster {
-  width: 200px; /* Largura fixa para o poster */
+  width: 200px;
   flex-shrink: 0;
 }
 
 .dish-poster img {
   width: 100%;
   height: auto;
-  aspect-ratio: 1 / 1; /* Fotos dos pratos parecem ser 1:1 */
+  aspect-ratio: 1 / 1;
   object-fit: cover;
   border-radius: 8px;
   border: 1px solid var(--header-border, #2a3440);
@@ -35,7 +35,7 @@
 
 .dish-description {
   font-size: 1rem;
-  color: #9fb3c8; /* --text-muted do Header.css */
+  color: #9fb3c8;
   line-height: 1.6;
 }
 

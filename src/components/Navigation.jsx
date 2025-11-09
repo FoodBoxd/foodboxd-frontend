@@ -5,9 +5,6 @@ export default function Navigation() {
     <nav style={{ padding: '10px', background: '#eee' }}>
       <ul style={{ listStyle: 'none', display: 'flex', gap: '20px' }}>
         <li>
-          <Link to="/">Página Inicial (Home)</Link>
-        </li>
-        <li>
           <Link to="/login">Login</Link>
         </li>
         <li>

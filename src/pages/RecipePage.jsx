@@ -34,7 +34,7 @@ function RecipePage() {
     fetchDish()
   }, [dishId])
 
-  // const handleReviewSubmitted = (newReview) => {
+  const handleReviewSubmitted = (newReview) => {newReview}
 
   if(loading) {
     return <div>Carregando...</div>
