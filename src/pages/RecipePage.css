@@ -1,0 +1,44 @@
+.recipe-page-container {
+  width: 100%;
+  max-width: 1200px; /* Alinhado ao header-container */
+  margin: 0 auto;
+  color: #e6edf3; /* Padrão do Header.css --text */
+  text-align: left; /* Reseta o text-align: center do #root */
+  overflow-x: none;
+}
+
+.recipe-page-content {
+  padding-top: 1.5rem;
+}
+
+.page-loading,
+.page-error {
+  padding: 2rem;
+  text-align: center;
+  font-size: 1.2rem;
+  color: #9fb3c8; /* Padrão do Header.css --text-muted */
+}
+
+/* Layout principal inspirado no Letterboxd (conteúdo + sidebar) */
+.recipe-body-grid {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.recipe-main-content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Layout Mobile */
+@media (max-width: 768px) {
+  .recipe-body-grid {
+    grid-template-columns: 1fr;
+  }
+  .recipe-sidebar {
+    display: none; /* Oculta sidebar no mobile */
+  }
+}

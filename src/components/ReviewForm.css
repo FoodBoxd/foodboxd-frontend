@@ -1,0 +1,125 @@
+/*
+ * Estilos para o formulário de avaliação.
+ * Baseado nos estilos de UserForm.css e ReviewSection.css
+ */
+.add-review-form {
+  background-color: #242424; /* Fundo do UserForm.css */
+  border: 1px solid #3a3a3a;
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  margin-bottom: 2rem; /* Espaço antes da lista de reviews */
+}
+
+.form-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 0.75rem;
+}
+
+.form-header h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #fff;
+  margin: 0;
+}
+
+.score-label {
+  font-size: 0.9rem;
+  color: var(--text-muted, #9fb3c8);
+  font-style: italic;
+}
+
+.star-input-container {
+  display: flex;
+  gap: 0.25rem;
+  margin-bottom: 1rem;
+}
+
+.star-input-button {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  color: var(--loader-track, #2a3440); /* Cinza escuro/borda */
+  transition: color 0.15s ease-in-out, transform 0.1s ease-in-out;
+}
+
+.star-input-button .star-svg {
+  width: 2em;
+  height: 2em;
+}
+
+.star-input-button.filled {
+  color: var(--loader-green, #37a762); /* Verde principal */
+}
+
+.star-input-button:hover {
+  color: var(--loader-green, #37a762);
+  transform: scale(1.1);
+}
+
+.star-input-button:focus {
+  outline: none;
+}
+
+.comment-textarea {
+  width: 100%;
+  min-height: 80px;
+  padding: 0.75rem 0.875rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  border: 1px solid #3a3a3a;
+  background: #1a1a1a;
+  color: #fff;
+  box-sizing: border-box; /* Garante que o padding não estoure a largura */
+  resize: vertical;
+}
+
+.comment-textarea:focus {
+  outline: 2px solid var(--loader-green, #37a762);
+  border-color: var(--loader-green, #37a762);
+}
+
+.form-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.75rem;
+}
+
+.char-counter {
+  font-size: 0.8rem;
+  color: var(--text-muted, #9fb3c8);
+}
+
+.submit-review-btn {
+  background-color: var(--loader-green, #37a762);
+  color: #fff;
+  font-weight: 700;
+  border: none;
+  border-radius: 8px;
+  padding: 0.75rem 1.25rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.submit-review-btn:hover {
+  background-color: #2e8b50;
+}
+
+.submit-review-btn:disabled {
+  background-color: var(--loader-track, #2a3440);
+  color: var(--text-muted, #9fb3c8);
+  cursor: not-allowed;
+}
+
+.form-error {
+  color: #ff6b6b; /* Vermelho para erros */
+  font-size: 0.9rem;
+  margin-top: 0.75rem;
+  margin-bottom: 0;
+}

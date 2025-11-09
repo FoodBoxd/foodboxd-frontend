@@ -1,0 +1,40 @@
+.ingredient-list-section h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #fff;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--header-border, #2a3440); /* Reusa variável do Header.css */
+}
+
+.ingredient-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.ingredient-tag {
+  display: inline-block;
+  padding: 0.5rem 0.85rem;
+  background-color: #242424; /* Baseado no UserForm.css #createUserCard */
+  border: 1px solid #3a3a3a; /* Baseado no UserForm.css input */
+  border-radius: 8px;
+  color: #e6edf3;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+.ingredient-tag:hover {
+  background-color: #3a3a3a;
+  border-color: #37a762; /* Verde do UserForm.css button */
+  color: #fff;
+}
+
+.ingredient-quantity {
+  color: #9fb3c8; /* muted */
+  margin-left: 0.5rem;
+  font-size: 0.8rem;
+}

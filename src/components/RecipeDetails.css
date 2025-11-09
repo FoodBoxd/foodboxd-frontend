@@ -1,0 +1,23 @@
+.recipe-details-section h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #fff;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--header-border, #2a3440); /* Reusa variável do Header.css */
+}
+
+.recipe-instructions {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #cdd9e5; /* Um pouco mais claro que o muted */
+}
+
+.recipe-instructions ol {
+  padding-left: 1.5rem;
+}
+
+.recipe-instructions li {
+  margin-bottom: 0.75rem;
+}
