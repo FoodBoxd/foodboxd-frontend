@@ -12,6 +12,13 @@
   border-bottom: 1px solid var(--header-border, #2a3440); /* Reusa variável do Header.css */
 }
 
+/* Novo estilo para o divisor */
+.review-divider {
+  height: 1px;
+  background-color: var(--header-border, #2a3440);
+  margin-bottom: 2rem;
+}
+
 .review-list {
   display: flex;
   flex-direction: column;
@@ -36,9 +43,6 @@
   font-weight: 600;
   color: #fff;
 }
-
-/* O estilo .review-score não é mais necessário,
-   pois foi substituído por StarRating */
 
 .review-comment {
   font-size: 0.95rem;

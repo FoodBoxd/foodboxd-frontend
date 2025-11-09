@@ -60,6 +60,10 @@
   transform: scale(1.1);
 }
 
+.star-input-button:focus {
+  outline: none;
+}
+
 .comment-textarea {
   width: 100%;
   min-height: 80px;

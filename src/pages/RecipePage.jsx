@@ -34,7 +34,10 @@ function RecipePage() {
     fetchDish()
   }, [dishId])
 
-  const handleReviewSubmitted = (newReview) => {newReview}
+  const handleReviewSubmitted = async () => {
+    const { data } = await api.get(`dishes/${dishId}`)
+    setDish(data)
+  }
 
   if(loading) {
     return <div>Carregando...</div>
@@ -56,7 +59,7 @@ function RecipePage() {
           </div>
           <div className="recipe-sidebar"></div>
         </div>
-        <ReviewSection ratings={dish.ratings} dishId={dishId} onReviewSubmitted={handleReviewSubmitted} />
+        <ReviewSection ratings={dish.ratings} dishId={parseInt(dishId)} onReviewSubmitted={handleReviewSubmitted} />
       </div>
     </div>
   )

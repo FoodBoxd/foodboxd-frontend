@@ -23,7 +23,7 @@ const StarInput = ({ filled, onClick, onMouseEnter, onMouseLeave }) => (
   </button>
 )
 
-export default function AddReviewForm({ dishId, userId, onSubmitSuccess }) {
+export default function ReviewForm({ dishId, userId, onSubmitSuccess }) {
   const [score, setScore] = useState(0)
   const [hoverScore, setHoverScore] = useState(0)
   const [comment, setComment] = useState('')
@@ -40,7 +40,7 @@ export default function AddReviewForm({ dishId, userId, onSubmitSuccess }) {
     setIsSubmitting(true)
 
     try {
-      const response = await api.post('ratings/create', {
+      const { data } = await api.post('ratings/create', {
         userId,
         dishId,
         score,
@@ -48,7 +48,7 @@ export default function AddReviewForm({ dishId, userId, onSubmitSuccess }) {
       })
 
       // Passa o novo objeto de rating (retornado pela API) para o componente pai
-      onSubmitSuccess(response.data)
+      onSubmitSuccess(data)
 
       // Limpa o formulário
       setScore(0)

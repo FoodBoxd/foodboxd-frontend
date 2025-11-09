@@ -1,13 +1,13 @@
 import React from 'react';
 import StarRating from './StarRating';
 import './ReviewSection.css';
-import AddReviewForm from './ReviewForm';
+import ReviewForm from './ReviewForm';
 
 export default function ReviewSection({ ratings, dishId, onReviewSubmitted }) {
   return (
     <section className="review-section">
       <h2>Avaliações</h2>
-      <AddReviewForm
+      <ReviewForm
         dishId={dishId}
         userId={1}
         onSubmitSuccess={onReviewSubmitted}
