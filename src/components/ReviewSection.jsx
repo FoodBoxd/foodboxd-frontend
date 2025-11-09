@@ -2,13 +2,15 @@ import React from 'react';
 import StarRating from './StarRating'; // Importa o novo componente
 import './ReviewSection.css';
 
-export default function ReviewSection({ ratings }) {
+export default function ReviewSection({ ratings, dishId, onReviewSubmitted }) {
   return (
     <section className="review-section">
       <h2>Avaliações</h2>
-      {/* Aqui entrará o formulário para o usuário logado
-        adicionar uma nova avaliação (novo componente)
-      */}
+      <AddReviewForm 
+        dishId={dishId} 
+        userId={1} // !! SIMULAÇÃO: O ID do usuário logado (ex: 1) deve vir do contexto de autenticação
+        onSubmitSuccess={onReviewSubmitted} 
+      />
       <div className="review-list">
         {(!ratings || ratings.length === 0) ? (
           <p className="no-reviews">Este prato ainda não possui avaliações.</p>

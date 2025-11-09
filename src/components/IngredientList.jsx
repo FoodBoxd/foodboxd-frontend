@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import './IngredientList.css';
 
 export default function IngredientList({ ingredients }) {
-  console.log(ingredients);
   if (!ingredients || ingredients.length === 0) {
     return (
       <section className="ingredient-list-section">

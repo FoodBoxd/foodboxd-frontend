@@ -34,6 +34,8 @@ function RecipePage() {
     fetchDish()
   }, [dishId])
 
+  // const handleReviewSubmitted = (newReview) => {
+
   if(loading) {
     return <div>Carregando...</div>
   }
@@ -54,7 +56,7 @@ function RecipePage() {
           </div>
           <div className="recipe-sidebar"></div>
         </div>
-        <ReviewSection ratings={dish.ratings} />
+        <ReviewSection ratings={dish.ratings} dishId={dishId} onReviewSubmitted={handleReviewSubmitted} />
       </div>
     </div>
   )
