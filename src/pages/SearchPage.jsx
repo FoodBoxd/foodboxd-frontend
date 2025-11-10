@@ -55,13 +55,6 @@ export default function SearchPage() {
   // Lógica da API:
   // Dispara a busca sempre que o 'searchTerm' (debounced) mudar
   useEffect(() => {
-    if (!searchTerm) {
-      setResults([])
-      setHasSearched(false)
-      setLoading(false)
-      return
-    }
-
     const fetchSearch = async () => {
       setLoading(true)
       setHasSearched(true)
@@ -88,7 +81,7 @@ export default function SearchPage() {
     navigate(`/dish/${item.id}`)
   }
 
-  console.log('Resultados da busca:', results)
+  const title = searchTerm ? `Resultados para "${searchTerm}"` : "Todos os Pratos";
 
   return (
     <div className="search-page-container">
@@ -115,7 +108,7 @@ export default function SearchPage() {
             {results.length > 0 && (
               <>
                 <h2 className="results-title">
-                  Resultados para "{searchTerm}"
+                  {title}
                 </h2>
                 <div className="results-grid">
                   {results.map((item) => (
@@ -132,12 +125,6 @@ export default function SearchPage() {
             {hasSearched && results.length === 0 && (
               <div className="no-results-message">
                 Nenhum prato encontrado para "{searchTerm}".
-              </div>
-            )}
-
-            {!hasSearched && !loading && (
-              <div className="no-results-message">
-                Digite algo para começar a buscar.
               </div>
             )}
 

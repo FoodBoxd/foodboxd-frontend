@@ -16,8 +16,8 @@ export default function Header() {
           <NavLink to="/home" className="nav-link">
             Início
           </NavLink>
-          <NavLink to="/" className="nav-link">
-            Receitas
+          <NavLink to="/search" className="nav-link">
+            Pratos
           </NavLink>
         </nav>
 
