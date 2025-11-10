@@ -5,6 +5,7 @@ import HomePage from '../pages/HomePage'
 import LoginPage from '../pages/LoginPage'
 import RegisterPage from '../pages/RegisterPage'
 import RecipePage from '../pages/RecipePage'
+import UserProfilePage from '../pages/UserProfilePage'
 import SearchPage from '../pages/SearchPage'
 
 const router = createBrowserRouter([
@@ -27,10 +28,6 @@ const router = createBrowserRouter([
       {
         path: '/dish/:dishId',
         element: <RecipePage />,
-      },
-      {
-        path: '/search',
-        element: <SearchPage />,
       }
     ],
   },
