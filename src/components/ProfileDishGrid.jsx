@@ -1,9 +1,8 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import StarRating from './StarRating' // Reutilizando seu componente
+import StarRating from './StarRating'
 import './ProfileDishGrid.css'
 
-// Card similar ao CarouselCard, mas adaptado para o grid
 const DishGridCard = ({ dish, onClick }) => {
   return (
     <div className="dish-grid-card" onClick={onClick}>
@@ -15,7 +14,6 @@ const DishGridCard = ({ dish, onClick }) => {
         <div className="dish-card-rating">
           <StarRating score={dish.userScore} />
         </div>
-        {/* A info "Restaurante" não existe no modelo do backend */}
       </div>
     </div>
   )

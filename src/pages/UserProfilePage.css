@@ -1,13 +1,13 @@
 .profile-page-container {
   width: 100%;
-  max-width: 1200px; /* Alinhado ao header-container */
+  max-width: 1200px;
   margin: 0 auto;
   color: #e6edf3;
   text-align: left;
 }
 
 .profile-page-content {
-  padding: 1.5rem 1rem; /* Padding para mobile */
+  padding: 1.5rem 1rem;
 }
 
 .profile-page-status {
@@ -20,12 +20,11 @@
   color: #ff6b6b;
 }
 
-/* Barra de Stats */
 .profile-stats-bar {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: #1c1c1c; /* Cor de fundo escura */
+  background-color: #1c1c1c;
   border: 1px solid #3a3a3a;
   border-radius: 8px;
   padding: 1rem 0.5rem;
@@ -48,11 +47,10 @@
 .stat-label {
   font-size: 0.75rem;
   text-transform: uppercase;
-  color: #9fb3c8; /* text-muted */
+  color: #9fb3c8;
   letter-spacing: 0.05em;
 }
 
-/* Media query para telas maiores */
 @media (min-width: 768px) {
   .profile-page-content {
     padding: 2rem;

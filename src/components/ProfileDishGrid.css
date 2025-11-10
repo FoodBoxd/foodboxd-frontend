@@ -1,6 +1,5 @@
 .profile-dish-grid {
   display: grid;
-  /* 2 colunas em mobile, 4 em tablet, 6 em desktop */
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
 }
@@ -23,7 +22,7 @@
 
 .dish-card-poster {
   width: 100%;
-  aspect-ratio: 1 / 1; /* Quadrado, como no design */
+  aspect-ratio: 1 / 1;
   background-color: #1e1e1e;
 }
 
@@ -50,19 +49,18 @@
 }
 
 .dish-card-rating .star-svg {
-  width: 1em; /* Menor que o formulário */
+  width: 1em;
   height: 1em;
 }
 
 .profile-grid-empty {
-  color: #9fb3c8; /* muted */
+  color: #9fb3c8;
   font-style: italic;
   padding: 2rem 0;
   text-align: center;
 }
 
 
-/* Media Queries para responsividade */
 @media (min-width: 600px) {
   .profile-dish-grid {
     grid-template-columns: repeat(3, 1fr);
@@ -78,7 +76,6 @@
 
 @media (min-width: 1024px) {
   .profile-dish-grid {
-    /* 6 colunas, como no design */
     grid-template-columns: repeat(6, 1fr);
   }
 }

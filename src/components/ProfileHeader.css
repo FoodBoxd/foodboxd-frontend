@@ -37,7 +37,7 @@
 
 .profile-username {
   font-size: 1rem;
-  color: #9fb3c8; /* text-muted */
+  color: #9fb3c8;
 }
 
 .profile-bio {
@@ -67,7 +67,6 @@
   filter: drop-shadow(0px 0px 10px #3fbf7046);
 }
 
-/* Layout Desktop */
 @media (min-width: 768px) {
   .profile-header {
     flex-direction: row;

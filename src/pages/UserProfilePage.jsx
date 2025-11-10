@@ -17,7 +17,6 @@ export default function UserProfilePage() {
     const fetchProfile = async () => {
       setLoading(true)
       try {
-        // Usamos o novo endpoint
         const { data } = await api.get(`users/${userId}/profile`)
         setProfile(data)
       } catch (err) {
