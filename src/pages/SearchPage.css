@@ -64,7 +64,7 @@
      - Mas permite que cresçam até 1fr (ocupando espaço igual)
      - Mínimo de 150px em telas muito pequenas
   */
-  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 1.25rem;
 }
 
