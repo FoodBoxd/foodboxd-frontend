@@ -53,9 +53,8 @@
 }
 
 .edit-profile-btn {
-  background-color: #2a3440;
+  background-color: #37a762;
   color: #e6edf3;
-  border: 1px solid #3a3a3a;
   border-radius: 6px;
   padding: 0.5rem 1rem;
   font-weight: 600;
@@ -64,8 +63,8 @@
 }
 
 .edit-profile-btn:hover {
-  background-color: #3a3a3a;
-  border-color: #9fb3c8;
+  background-color: #3fbf70;
+  filter: drop-shadow(0px 0px 10px #3fbf7046);
 }
 
 /* Layout Desktop */
