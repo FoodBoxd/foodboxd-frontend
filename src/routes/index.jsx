@@ -28,6 +28,14 @@ const router = createBrowserRouter([
       {
         path: '/dish/:dishId',
         element: <RecipePage />,
+      },
+      {
+        path: '/user/:userId',
+        element: <UserProfilePage />,
+      },
+      {
+        path: '/search',
+        element: <SearchPage />,
       }
     ],
   },
