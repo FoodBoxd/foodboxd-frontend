@@ -23,7 +23,7 @@ function UserForm() {
     try {
       await api.post('users/login', newUser)
 
-      navigate('/')
+      navigate('/home')
     } catch (error) {
       console.log(`Erro no login de usuário: ${error}`)
       setMessage('Falha ao logar usuário. Verifique o console.')
@@ -54,7 +54,7 @@ function UserForm() {
         />
 
         <button type="submit">Entrar</button>
-        
+
       </form>
 
       {message && <p>{message}</p>}

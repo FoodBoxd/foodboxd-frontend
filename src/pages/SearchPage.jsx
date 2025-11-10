@@ -5,7 +5,6 @@ import Header from '../components/Header'
 import SearchResultCard from '../components/SearchResultCard'
 import './SearchPage.css'
 
-// Ícone de Lupa para a barra de busca
 const SearchIcon = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -22,48 +21,39 @@ const SearchIcon = () => (
 
 export default function SearchPage() {
   const navigate = useNavigate()
-  // Sincroniza o estado da busca com os parâmetros da URL (ex: /search?q=pizza)
   const [searchParams, setSearchParams] = useSearchParams()
 
-  // 'query' é o valor do input (controlado)
   const [query, setQuery] = useState(searchParams.get('q') || '')
-  // 'searchTerm' é o valor "atrasado" (debounced) que usamos para chamar a API
   const [searchTerm, setSearchTerm] = useState(searchParams.get('q') || '')
 
   const [results, setResults] = useState([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
-  // Controla se uma busca já foi feita para diferenciar "comece a buscar" de "nenhum resultado"
   const [hasSearched, setHasSearched] = useState(!!searchParams.get('q'))
 
-  // Lógica de Debounce:
-  // Só atualiza o 'searchTerm' (que dispara a API) 500ms após o usuário parar de digitar
   useEffect(() => {
     const timerId = setTimeout(() => {
       setSearchTerm(query)
-      // Atualiza o parâmetro da URL sem recarregar a página
       if (query) {
         setSearchParams({ q: query }, { replace: true })
       } else {
         setSearchParams({}, { replace: true })
       }
-    }, 500)
+    }, 600)
 
     return () => clearTimeout(timerId)
   }, [query, setSearchParams])
 
-  // Lógica da API:
-  // Dispara a busca sempre que o 'searchTerm' (debounced) mudar
   useEffect(() => {
     const fetchSearch = async () => {
       setLoading(true)
       setHasSearched(true)
       setError(null)
       try {
-        const response = await api.get(
+        const { data } = await api.get(
           `/dishes/search?q=${encodeURIComponent(searchTerm)}`
         )
-        setResults(response.data)
+        setResults(data)
       } catch (err) {
         console.error('Erro ao buscar:', err)
         setError('Não foi possível realizar a busca. Tente novamente.')
@@ -76,7 +66,6 @@ export default function SearchPage() {
     fetchSearch()
   }, [searchTerm])
 
-  // Navega para a página de receita ao clicar em um card
   const handleCardClick = (item) => {
     navigate(`/dish/${item.id}`)
   }

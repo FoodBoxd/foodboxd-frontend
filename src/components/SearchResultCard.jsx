@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import StarRating from './StarRating'; // Importa o componente de estrelas
+import StarRating from './StarRating';
 import './SearchResultCard.css';
 
 
@@ -37,7 +37,6 @@ export default function SearchResultCard({ item, onClick }) {
         <div className="search-card-rating-info">
           {ratingCount > 0 ? (
             <>
-              {/* Reutiliza o componente StarRating */}
               <StarRating score={averageScore} />
               <span className="search-card-rating-count">
                 ({ratingCount})

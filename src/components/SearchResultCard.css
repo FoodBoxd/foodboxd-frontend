@@ -1,15 +1,11 @@
-/* * Estilo para o novo SearchResultCard.
- * Baseado no CarouselCard, mas adaptado para o grid e
- * para incluir a seção de avaliação.
- */
 .search-result-card {
   display: flex;
   flex-direction: column;
-  height: 100%; /* Garante que os cards no grid tenham a mesma altura */
+  height: 100%;
   border-radius: 8px;
-  overflow: hidden; /* Garante que a imagem não vaze */
+  overflow: hidden;
   cursor: pointer;
-  background-color: #2b2f33; /* Fundo do meta do CarouselCard */
+  background-color: #2b2f33;
   transition: transform 200ms ease, box-shadow 200ms ease;
   border: 1px solid var(--header-border, #2a3440);
 }
@@ -23,7 +19,7 @@
 .search-card-poster {
   position: relative;
   width: 100%;
-  aspect-ratio: 1 / 1; /* Imagens quadradas para o grid */
+  aspect-ratio: 1 / 1;
   background: #1e1e1e;
   overflow: hidden;
 }
@@ -43,11 +39,10 @@
 
 .search-card-meta {
   padding: 0.75rem 0.85rem;
-  /* Garante que o meta ocupe o espaço restante */
-  flex-grow: 1; 
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* Alinha o nome no topo e as estrelas embaixo */
+  justify-content: space-between;
 }
 
 .search-card-name {
@@ -55,15 +50,13 @@
   font-weight: 600;
   color: var(--text, #e6edf3);
   margin: 0;
-  
-  /* Limita o nome a 2 linhas */
   display: -webkit-box;
   -webkit-line-clamp: 2;
   line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-  min-height: 2.4em; /* Garante altura de 2 linhas */
+  min-height: 2.4em;
 }
 
 .search-card-rating-info {
@@ -73,16 +66,15 @@
   margin-top: 0.25rem;
 }
 
-/* O StarRating importado já tem seu CSS (StarRating.css) */
 .search-card-rating-info .star-rating {
-  font-size: 1rem; /* Ajusta o tamanho das estrelas */
+  font-size: 1rem;
 }
 
 .search-card-rating-count {
   font-size: 0.8rem;
   color: var(--text-muted, #9fb3c8);
   font-weight: 500;
-  transform: translateY(1px); /* Alinhamento visual fino */
+  transform: translateY(1px);
 }
 
 .search-card-no-rating {
