@@ -1,0 +1,84 @@
+.search-result-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  background-color: #2b2f33;
+  transition: transform 200ms ease, box-shadow 200ms ease;
+  border: 1px solid var(--header-border, #2a3440);
+}
+
+.search-result-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  border-color: var(--loader-green, #37a762);
+}
+
+.search-card-poster {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: #1e1e1e;
+  overflow: hidden;
+}
+
+.search-card-poster img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.search-card-poster-fallback {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #292929, #1b1b1b);
+}
+
+.search-card-meta {
+  padding: 0.75rem 0.85rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.search-card-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text, #e6edf3);
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-height: 2.4em;
+}
+
+.search-card-rating-info {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.35rem;
+  margin-top: 0.25rem;
+}
+
+.search-card-rating-info .star-rating {
+  font-size: 1rem;
+}
+
+.search-card-rating-count {
+  font-size: 0.8rem;
+  color: var(--text-muted, #9fb3c8);
+  font-weight: 500;
+  transform: translateY(1px);
+}
+
+.search-card-no-rating {
+  font-size: 0.8rem;
+  color: var(--text-muted, #9fb3c8);
+  font-style: italic;
+}

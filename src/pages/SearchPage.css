@@ -1,0 +1,82 @@
+.search-page-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.search-content {
+  padding-top: 2rem;
+}
+
+.search-bar-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto 2rem auto;
+}
+
+.search-input {
+  width: 100%;
+  padding: 1rem 1.25rem 1rem 3.5rem;
+  border-radius: 12px;
+  font-size: 1.125rem;
+  border: 1px solid var(--header-border, #2a3440);
+  background: var(--header-bg, #14181c);
+  color: var(--text, #e6edf3);
+  box-sizing: border-box;
+}
+
+.search-input:focus {
+  outline: 2px solid var(--loader-green, #37a762);
+  border-color: var(--loader-green, #37a762);
+}
+
+.search-input-icon {
+  position: absolute;
+  left: 1.25rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted, #9fb3c8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-results-container {
+  text-align: left;
+}
+
+.results-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #fff;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--header-border, #2a3440);
+}
+
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.25rem;
+}
+
+.results-grid .carousel-card {
+  width: 100% !important;
+}
+
+.no-results-message,
+.error-message {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: var(--text-muted, #9fb3c8);
+  font-size: 1.1rem;
+  font-style: italic;
+}
+
+.error-message {
+  color: #ff6b6b;
+  font-style: normal;
+}
