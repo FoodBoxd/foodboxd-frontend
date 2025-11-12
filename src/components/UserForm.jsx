@@ -27,7 +27,7 @@ function UserForm() {
     try {
       await api.post('users/create', newUser)
 
-      navigate('/')
+      navigate('/home')
     } catch (error) {
       console.log(`Erro na criação de usuário: ${error}`)
       setMessage('Falha ao criar usuário. Verifique o console.')
