@@ -18,7 +18,7 @@ export default function HomePage() {
           imageUrl: dish.photo,
           name: dish.name,
         }))
-        setDishes(formattedDishes.slice(0, 10))
+        setDishes(formattedDishes)
       } catch (error) {
         console.error('Error fetching dishes:', error)
       }
