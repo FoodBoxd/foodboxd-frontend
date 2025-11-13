@@ -24,6 +24,7 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  justify-content: space-between;
 }
 
 .dish-name {
@@ -37,6 +38,42 @@
   font-size: 1rem;
   color: #9fb3c8;
   line-height: 1.6;
+}
+
+.dish-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem; /* Ajuste o espaçamento */
+}
+
+.favorite-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background-color: var(--header-border, #2a3440);
+  color: var(--text-muted, #9fb3c8);
+  border: none;
+  border-radius: 6px;
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.favorite-btn:hover {
+  background-color: #3a3a3a;
+  color: #fff;
+}
+
+.favorite-btn.favorited {
+  background-color: #ff80ab26; /* Rosa suave */
+  color: #ff80ab; /* Rosa */
+}
+
+.favorite-btn.favorited:hover {
+  background-color: #ff80ab40;
+  color: #fcc2d9;
 }
 
 /* Layout Mobile */

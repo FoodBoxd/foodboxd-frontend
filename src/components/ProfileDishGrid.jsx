@@ -11,21 +11,30 @@ const DishGridCard = ({ dish, onClick }) => {
       </div>
       <div className="dish-card-meta">
         <span className="dish-card-name">{dish.dishName}</span>
-        <div className="dish-card-rating">
-          <StarRating score={dish.userScore} />
-        </div>
+        
+        {/* --- INÍCIO DA MODIFICAÇÃO --- */}
+        {/* Renderiza as estrelas apenas se 'userScore' existir */}
+        {typeof dish.userScore === 'number' && (
+          <div className="dish-card-rating">
+            <StarRating score={dish.userScore} />
+          </div>
+        )}
+        {/* --- FIM DA MODIFICAÇÃO --- */}
+
       </div>
     </div>
   )
 }
 
-export default function ProfileDishGrid({ dishes }) {
+// 1. Receba 'emptyMessage' como prop
+export default function ProfileDishGrid({ dishes, emptyMessage }) {
   const navigate = useNavigate()
 
   if (!dishes || dishes.length === 0) {
     return (
       <p className="profile-grid-empty">
-        Este usuário ainda não avaliou nenhum prato.
+        {/* 2. Use a prop 'emptyMessage' ou um padrão */}
+        {emptyMessage || 'Nenhum item para exibir.'}
       </p>
     )
   }
