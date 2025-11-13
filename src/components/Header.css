@@ -4,13 +4,14 @@
   --text: #e6edf3;
   --text-muted: #9fb3c8;
   --text-hover: #d6e2ee;
+  --brand-green: #37a762; 
 }
 
 .site-header {
   position: sticky;
   top: 0;
   z-index: 1000;
-  width: 100;
+  width: 100vw;
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
   background: var(--header-bg);
@@ -27,7 +28,8 @@
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  position: relative; /* allow centering nav absolutely */
+  position: relative; 
+  box-sizing: border-box; 
 }
 
 .header-nav {
@@ -46,6 +48,7 @@
   font-size: 12px;
   letter-spacing: 0.08em;
   padding: 6px 4px;
+  text-decoration: none; 
 }
 .nav-link:hover,
 .nav-link.active {
@@ -58,21 +61,43 @@
   gap: 12px;
 }
 
+.header-user-name {
+  color: var(--text, #e6edf3);
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.header-user-name:hover {
+  color: var(--brand-green);
+}
+
+.nav-link-button,
 .logout-button {
-  background-color: red;
-  color: #f8f8f8;
-  font-weight: 700;
+  background-color: var(--header-border);
+  color: var(--text-muted);
+  font-weight: 600;
   padding: 8px 14px;
   border-radius: 6px;
   text-decoration: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: background-color 0.2s, color 0.2s;
 }
 
-/* keep text color on hover/visited and avoid global anchor hover styles */
-.logout-button:hover,
-.logout-button:visited,
-.logout-button:active {
-  color: #f8f8f8;
-  text-decoration: none;
+.nav-link-button:hover,
+.logout-button:hover {
+  background-color: #3a3a3a;
+  color: #fff;
+}
+
+.nav-link-button.register {
+  background-color: var(--brand-green);
+  color: #fff;
+}
+.nav-link-button.register:hover {
+  background-color: #2e8b50;
 }
 
 .logo {
@@ -85,4 +110,18 @@
 
 @media (max-width: 860px) {
   .header-nav { display: none; }
+}
+
+@media (max-width: 480px) {
+  .header-container {
+    padding: 0 12px;
+  }
+  .header-user-name {
+    display: none; 
+  }
+  .nav-link-button,
+  .logout-button {
+    padding: 6px 10px;
+    font-size: 0.8rem;
+  }
 }

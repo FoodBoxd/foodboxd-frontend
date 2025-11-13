@@ -1,17 +1,31 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import StarRating from './StarRating';
-import './ReviewSection.css';
 import ReviewForm from './ReviewForm';
+import { useAuth } from '../context/AuthContext'; 
+import './ReviewSection.css';
 
 export default function ReviewSection({ ratings, dishId, onReviewSubmitted }) {
+  const { isAuthenticated, user } = useAuth();
+
   return (
     <section className="review-section">
       <h2>Avaliações</h2>
-      <ReviewForm
-        dishId={dishId}
-        userId={1}
-        onSubmitSuccess={onReviewSubmitted}
-      />
+
+      {isAuthenticated ? (
+        <ReviewForm
+          dishId={dishId}
+          userId={user.userId}
+          onSubmitSuccess={onReviewSubmitted}
+        />
+      ) : (
+        <p className="login-prompt">
+          <Link to="/login">Faça login</Link> para deixar uma avaliação.
+        </p>
+      )}
+
+      <div className="review-divider"></div>
+
       <div className="review-list">
         {(!ratings || ratings.length === 0) ? (
           <p className="no-reviews">Este prato ainda não possui avaliações.</p>
