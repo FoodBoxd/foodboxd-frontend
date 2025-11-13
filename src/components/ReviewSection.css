@@ -9,9 +9,10 @@
   margin-top: 0;
   margin-bottom: 1rem;
   padding-bottom: 0.5rem;
-  border-bottom: 1px solid var(--header-border, #2a3440);
+  border-bottom: 1px solid var(--header-border, #2a3440); /* Reusa variável do Header.css */
 }
 
+/* Novo estilo para o divisor */
 .review-divider {
   height: 1px;
   background-color: var(--header-border, #2a3440);

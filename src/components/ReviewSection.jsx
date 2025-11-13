@@ -1,13 +1,16 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import StarRating from './StarRating';
-import './ReviewSection.css';
 import ReviewForm from './ReviewForm';
-import LikeButton from './LikeButton';
 import api from '../api';
+import './ReviewSection.css';
+import LikeButton from './LikeButton';
+import { useAuth } from '../context/AuthContext';
 
 export default function ReviewSection({ ratings, dishId, onReviewSubmitted }) {
+  const { isAuthenticated, user } = useAuth();
 
-  const currentUserId = 1; // TODO: adicionar usuario logado
+  const currentUserId = user.userId;
 
   const handleLikeClick = async (ratingId) => {
     try {
@@ -25,11 +28,21 @@ export default function ReviewSection({ ratings, dishId, onReviewSubmitted }) {
   return (
     <section className="review-section">
       <h2>Avaliações</h2>
-      <ReviewForm
-        dishId={dishId}
-        userId={currentUserId}
-        onSubmitSuccess={onReviewSubmitted}
-      />
+
+      {isAuthenticated ? (
+        <ReviewForm
+          dishId={dishId}
+          userId={currentUserId}
+          onSubmitSuccess={onReviewSubmitted}
+        />
+      ) : (
+        <p className="login-prompt">
+          <Link to="/login">Faça login</Link> para deixar uma avaliação.
+        </p>
+      )}
+
+      <div className="review-divider" />
+
       <div className="review-list">
         {(!ratings || ratings.length === 0) ? (
           <p className="no-reviews">Este prato ainda não possui avaliações.</p>
