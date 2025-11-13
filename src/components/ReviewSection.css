@@ -9,10 +9,9 @@
   margin-top: 0;
   margin-bottom: 1rem;
   padding-bottom: 0.5rem;
-  border-bottom: 1px solid var(--header-border, #2a3440); /* Reusa variável do Header.css */
+  border-bottom: 1px solid var(--header-border, #2a3440);
 }
 
-/* Novo estilo para o divisor */
 .review-divider {
   height: 1px;
   background-color: var(--header-border, #2a3440);
@@ -26,7 +25,7 @@
 }
 
 .review-card {
-  background-color: #242424; /* Baseado no UserForm.css */
+  background-color: #242424;
   border: 1px solid #3a3a3a;
   border-radius: 8px;
   padding: 1rem 1.25rem;
@@ -49,9 +48,20 @@
   line-height: 1.6;
   color: #cdd9e5;
   margin: 0;
+  margin-bottom: 0.75rem;
+}
+
+.review-footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 0.5rem;
+}
+
+.review-comment:empty {
+  margin-bottom: 0;
 }
 
 .no-reviews {
-  color: #9fb3c8; /* muted */
+  color: #9fb3c8;
   font-style: italic;
 }
