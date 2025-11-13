@@ -1,8 +1,9 @@
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { useState } from 'react'
 import api from '../api'
 import './UserForm.css'
 import logo from '../assets/AppLogo.png'
+import { useAuth } from '../context/AuthContext'
 
 function UserForm() {
   const [name, setName] = useState('')
@@ -11,11 +12,15 @@ function UserForm() {
   const [password, setPassword] = useState('')
 
   const [message, setMessage] = useState('')
+  const [loading, setLoading] = useState(false)
 
   const navigate = useNavigate()
+  const { login } = useAuth()
 
   const onSubmit = async (event) => {
     event.preventDefault()
+    setLoading(true)
+    setMessage('')
 
     const newUser = {
       name,
@@ -25,12 +30,19 @@ function UserForm() {
     }
 
     try {
-      await api.post('users/create', newUser)
+      const response = await api.post('users/register', newUser)
 
-      navigate('/home')
+      login(response.data)
+      navigate('/')
+
     } catch (error) {
       console.log(`Erro na criação de usuário: ${error}`)
-      setMessage('Falha ao criar usuário. Verifique o console.')
+      if (error.response && error.response.data && error.response.data.message) {
+        setMessage(error.response.data.message);
+      } else {
+        setMessage('Falha ao criar usuário. Tente novamente.');
+      }
+      setLoading(false)
     }
   }
 
@@ -46,6 +58,7 @@ function UserForm() {
           type="text"
           value={name}
           onChange={(e) => setName(e.target.value)}
+          required
         />
 
         <label htmlFor="ageInput">Data de Nascimento:</label>
@@ -54,6 +67,7 @@ function UserForm() {
           type="date"
           value={birthDate}
           onChange={(e) => setBirthDate(e.target.value)}
+          required
         />
 
         <label htmlFor="emailInput">E-mail:</label>
@@ -71,12 +85,19 @@ function UserForm() {
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          required
         />
 
-        <button type="submit">Concluir</button>
+        <button type="submit" disabled={loading}>
+          {loading ? 'Criando...' : 'Concluir'}
+        </button>
       </form>
 
-      {message && <p>{message}</p>}
+      {message && <p className="form-error">{message}</p>}
+
+      <p className="toggle-link">
+        Já tem uma conta? <Link to="/login">Faça login</Link>
+      </p>
     </div>
   )
 }
