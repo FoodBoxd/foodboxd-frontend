@@ -7,46 +7,58 @@ import RecipeDetails from '../components/RecipeDetails'
 import IngredientList from '../components/IngredientList'
 import ReviewSection from '../components/ReviewSection'
 import './RecipePage.css'
+import { useAuth } from '../context/AuthContext'
 
 function RecipePage() {
   const { dishId } = useParams()
   const [dish, setDish] = useState(null)
   const [loading, setLoading] = useState(true)
-
-
+  const [error, setError] = useState(null)
+  const { user } = useAuth()
   const [isFavorited, setIsFavorited] = useState(false)
   const [favoritesCount, setFavoritesCount] = useState(0)
 
-  useEffect(() => {
-    const fetchDish = async () => {
-      setLoading(true)
-      try {
-        const response = await api.get(`dishes/${dishId}`)
+  const refreshDishData = async () => {
+    setError(null);
+    try {
+      const params = user ? { userId: user.userId } : {};
 
-        if (!response.data.recipe) {
-          console.warn('API não retornou dados completos.')
-        } else {
-          setDish(response.data)
-          setIsFavorited(response.data.isFavoritedByCurrentUser)
-          setFavoritesCount(response.data.favoritesCount)
-        }
-      } catch (err) {
-        console.error('Falha ao buscar detalhes do prato:', err)
-      } finally {
-        setLoading(false)
-      }
+      const response = await api.get(`dishes/${dishId}`, { params });
+      setDish(response.data);
+      setIsFavorited(response.data.isFavoritedByCurrentUser)
+      setFavoritesCount(response.data.favoritesCount)
+    } catch (err) {
+      console.error('Falha ao atualizar dados do prato:', err);
+      setError('Não foi possível atualizar os dados.');
     }
+  }
 
-    fetchDish()
-  }, [dishId])
+  const fetchDishWithLoading = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const params = user ? { userId: user.userId } : {};
+
+      const response = await api.get(`dishes/${dishId}`, { params });
+      setDish(response.data);
+    } catch (err) {
+      console.error('Falha ao buscar detalhes do prato:', err);
+      setError('Não foi possível carregar os dados do prato.');
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    fetchDishWithLoading();
+  }, [dishId, user]);
 
   const handleReviewSubmitted = async () => {
-    const { data } = await api.get(`dishes/${dishId}`)
-    setDish(data)
+    await refreshDishData();
   }
 
   const handleToggleFavorite = async () => {
-    const currentUserId = 1
+    const currentUserId = user.userId
 
     const newFavoriteStatus = !isFavorited
     setIsFavorited(newFavoriteStatus)
@@ -72,7 +84,21 @@ function RecipePage() {
   }
 
   if(loading) {
-    return <div>Carregando...</div>
+    return (
+      <div className="recipe-page-container">
+        <Header />
+        <div className="page-loading">Carregando...</div>
+      </div>
+    )
+  }
+
+  if (error) {
+     return (
+      <div className="recipe-page-container">
+        <Header />
+        <div className="page-error">{error}</div>
+      </div>
+    )
   }
 
   if (!dish) {
@@ -99,11 +125,15 @@ function RecipePage() {
         <div className="recipe-body-grid">
           <div className="recipe-main-content">
             <RecipeDetails instructions={dish.recipe?.instructions} />
-            <IngredientList ingredients={dish.recipe.ingredients} />
+            <IngredientList ingredients={dish.recipe?.ingredients} />
           </div>
           <div className="recipe-sidebar"></div>
         </div>
-        <ReviewSection ratings={dish.ratings} dishId={parseInt(dishId)} onReviewSubmitted={handleReviewSubmitted} />
+        <ReviewSection
+          ratings={dish.ratings}
+          dishId={parseInt(dishId)}
+          onReviewSubmitted={handleReviewSubmitted}
+        />
       </div>
     </div>
   )

@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import api from '../api'
 import './ReviewForm.css'
+import { useAuth } from '../context/AuthContext'
 
-// Componente de estrela individual para o formulário
 const StarInput = ({ filled, onClick, onMouseEnter, onMouseLeave }) => (
   <button
     type="button"
@@ -23,12 +23,14 @@ const StarInput = ({ filled, onClick, onMouseEnter, onMouseLeave }) => (
   </button>
 )
 
-export default function ReviewForm({ dishId, userId, onSubmitSuccess }) {
+export default function ReviewForm({ dishId, onSubmitSuccess }) {
   const [score, setScore] = useState(0)
   const [hoverScore, setHoverScore] = useState(0)
   const [comment, setComment] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [error, setError] = useState(null)
+
+  const { user } = useAuth()
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -36,21 +38,26 @@ export default function ReviewForm({ dishId, userId, onSubmitSuccess }) {
       setError('Você precisa selecionar uma nota (de 1 a 5 estrelas).')
       return
     }
+
+    if (!user) {
+      setError('Você precisa estar logado para avaliar.')
+      // TODO: Redirecionar para o login
+      return
+    }
+
     setError(null)
     setIsSubmitting(true)
 
     try {
       const { data } = await api.post('ratings/create', {
-        userId,
+        userId: user.userId,
         dishId,
         score,
-        comment: comment || null, // Envia null se o comentário estiver vazio
+        comment: comment || null,
       })
 
-      // Passa o novo objeto de rating (retornado pela API) para o componente pai
       onSubmitSuccess(data)
 
-      // Limpa o formulário
       setScore(0)
       setHoverScore(0)
       setComment('')
@@ -98,7 +105,7 @@ export default function ReviewForm({ dishId, userId, onSubmitSuccess }) {
         <button
           type="submit"
           className="submit-review-btn"
-          disabled={isSubmitting || score === 0}
+          disabled={isSubmitting || score === 0 || !user}
         >
           {isSubmitting ? 'Publicando...' : 'Publicar'}
         </button>
