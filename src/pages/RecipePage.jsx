@@ -28,7 +28,7 @@ function RecipePage() {
         } else {
           setDish(response.data)
           setIsFavorited(response.data.isFavoritedByCurrentUser)
-          setFavoritesCount(response.data.favoritesCount)         
+          setFavoritesCount(response.data.favoritesCount)
         }
       } catch (err) {
         console.error('Falha ao buscar detalhes do prato:', err)
@@ -46,10 +46,8 @@ function RecipePage() {
   }
 
   const handleToggleFavorite = async () => {
-    // ID do usuário (fixo por enquanto, igual ao backend)
-    const currentUserId = 1 
+    const currentUserId = 1
 
-    // Atualização otimista (muda a UI antes da resposta da API)
     const newFavoriteStatus = !isFavorited
     setIsFavorited(newFavoriteStatus)
     setFavoritesCount((currentCount) =>
@@ -57,30 +55,26 @@ function RecipePage() {
     )
 
     try {
-      // Envia a requisição para o novo controller
       const response = await api.post('favorites/toggle', {
         userId: currentUserId,
         dishId: parseInt(dishId),
       })
 
-      // Sincroniza o estado com a resposta final da API (garantia)
       setIsFavorited(response.data.favorited)
       setFavoritesCount(response.data.favoritesCount)
     } catch (err) {
       console.error('Falha ao atualizar favorito:', err)
-      // Reverte a UI em caso de erro
       setIsFavorited(!newFavoriteStatus)
       setFavoritesCount((currentCount) =>
         !newFavoriteStatus ? currentCount + 1 : currentCount - 1
       )
     }
-  }  
+  }
 
   if(loading) {
     return <div>Carregando...</div>
   }
 
-// 4. Adicione uma verificação de segurança (similar à que fizemos na UserProfilePage)
   if (!dish) {
     return (
       <div className="recipe-page-container">
@@ -88,7 +82,7 @@ function RecipePage() {
         <div className="page-error">Prato não encontrado.</div>
       </div>
     )
-  }  
+  }
 
   return (
     <div className="recipe-page-container">

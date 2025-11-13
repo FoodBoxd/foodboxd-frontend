@@ -13,7 +13,6 @@ export default function UserProfilePage() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
 
-  // 1. Adicione o estado para controlar a aba ativa
   const [activeTab, setActiveTab] = useState('ratings')
 
   useEffect(() => {
@@ -51,13 +50,11 @@ export default function UserProfilePage() {
     )
   }
 
-// 2. Lógica para decidir qual lista exibir
   const dishesToShow =
     activeTab === 'ratings'
       ? profile?.ratedDishes
       : profile?.favoriteDishes
 
-  // 3. Mensagem de "vazio" dinâmica
   const emptyMessage =
     activeTab === 'ratings'
       ? 'Este usuário ainda não avaliou nenhum prato.'
@@ -86,28 +83,17 @@ export default function UserProfilePage() {
                 <span className="stat-value">{profile.stats.averageScore.toFixed(1)}★</span>
                 <span className="stat-label">Média</span>
             </div>
-            {/* <div className="stat-item">
-                <span className="stat-value">{profile.stats.followers}</span>
-                <span className="stat-label">Seguidores</span>
-                </div>
-            // TODO: verificar feature de seguidores
-            <div className="stat-item">
-                <span className="stat-value">{profile.stats.following}</span>
-                <span className="stat-label">Seguindo</span>
-            </div> */}
         </div>
-        
 
-        {/* 4. Passe as props para ProfileTabs */}
+
         <ProfileTabs
           activeTab={activeTab}
           onTabChange={setActiveTab}
         />
 
-        {/* 5. Passe a lista correta e a mensagem de vazio para ProfileDishGrid */}
-        <ProfileDishGrid 
-          dishes={dishesToShow} 
-          emptyMessage={emptyMessage} 
+        <ProfileDishGrid
+          dishes={dishesToShow}
+          emptyMessage={emptyMessage}
         />
       </div>
     </div>

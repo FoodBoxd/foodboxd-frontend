@@ -19,7 +19,6 @@ export default function DishHeader({
         <h1 className="dish-name">{name}</h1>
         <p className="dish-description">{description}</p>
 
-        {/* 4. O botão agora usa o HeartIcon importado */}
         <div className="dish-actions">
           <button
             className={`favorite-btn ${isFavorited ? 'favorited' : ''}`}

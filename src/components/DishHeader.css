@@ -43,7 +43,7 @@
 .dish-actions {
   display: flex;
   gap: 0.5rem;
-  margin-top: 0.5rem; /* Ajuste o espaçamento */
+  margin-top: 0.5rem;
 }
 
 .favorite-btn {
@@ -67,8 +67,8 @@
 }
 
 .favorite-btn.favorited {
-  background-color: #ff80ab26; /* Rosa suave */
-  color: #ff80ab; /* Rosa */
+  background-color: #ff80ab26;
+  color: #ff80ab;
 }
 
 .favorite-btn.favorited:hover {
@@ -76,7 +76,6 @@
   color: #fcc2d9;
 }
 
-/* Layout Mobile */
 @media (max-width: 600px) {
   .dish-header-container {
     flex-direction: column;
