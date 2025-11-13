@@ -15,71 +15,76 @@ function RecipePage() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const { user } = useAuth()
-  const [isFavorited, setIsFavorited] = useState(false)
-  const [favoritesCount, setFavoritesCount] = useState(0)
 
-  const refreshDishData = async () => {
+const fetchDishData = async () => {
     setError(null);
     try {
       const params = user ? { userId: user.userId } : {};
-
       const response = await api.get(`dishes/${dishId}`, { params });
-      setDish(response.data);
-      setIsFavorited(response.data.isFavoritedByCurrentUser)
-      setFavoritesCount(response.data.favoritesCount)
-    } catch (err) {
-      console.error('Falha ao atualizar dados do prato:', err);
-      setError('Não foi possível atualizar os dados.');
-    }
-  }
-
-  const fetchDishWithLoading = async () => {
-    setLoading(true);
-    setError(null);
-    try {
-      const params = user ? { userId: user.userId } : {};
-
-      const response = await api.get(`dishes/${dishId}`, { params });
-      setDish(response.data);
+      
+      if (!response.data) {
+        setError('Prato não encontrado.');
+      } else {
+        setDish(response.data); // 'dish' é nossa única fonte da verdade
+      }
     } catch (err) {
       console.error('Falha ao buscar detalhes do prato:', err);
       setError('Não foi possível carregar os dados do prato.');
-    } finally {
-      setLoading(false);
     }
   }
 
-  useEffect(() => {
-    fetchDishWithLoading();
+useEffect(() => {
+    const loadData = async () => {
+      setLoading(true);
+      await fetchDishData();
+      setLoading(false);
+    }
+    loadData();
   }, [dishId, user]);
 
   const handleReviewSubmitted = async () => {
-    await refreshDishData();
+    await fetchDishData();
   }
 
   const handleToggleFavorite = async () => {
-    const currentUserId = user.userId
+    if (!user) {
+      alert('Você precisa estar logado para favoritar pratos.');
+      return;
+    }
+    const currentUserId = user.userId;
+    const originalDish = dish; // Salva para reverter em caso de erro
 
-    const newFavoriteStatus = !isFavorited
-    setIsFavorited(newFavoriteStatus)
-    setFavoritesCount((currentCount) =>
-      newFavoriteStatus ? currentCount + 1 : currentCount - 1
-    )
+    // 5. Atualização Otimista: atualiza o 'dish' localmente
+    setDish((currentDish) => {
+      const newFavoriteStatus = !currentDish.isFavoritedByCurrentUser;
+      const newFavoritesCount = newFavoriteStatus
+        ? currentDish.favoritesCount + 1
+        : currentDish.favoritesCount - 1;
+
+      return {
+        ...currentDish,
+        isFavoritedByCurrentUser: newFavoriteStatus,
+        favoritesCount: newFavoritesCount,
+      };
+    });
 
     try {
+      // Envia a requisição
       const response = await api.post('favorites/toggle', {
         userId: currentUserId,
         dishId: parseInt(dishId),
-      })
+      });
 
-      setIsFavorited(response.data.favorited)
-      setFavoritesCount(response.data.favoritesCount)
+      // 6. Sincroniza com a resposta da API (atualiza 'dish' de novo)
+      setDish((currentDish) => ({
+        ...currentDish,
+        isFavoritedByCurrentUser: response.data.favorited,
+        favoritesCount: response.data.favoritesCount,
+      }));
     } catch (err) {
-      console.error('Falha ao atualizar favorito:', err)
-      setIsFavorited(!newFavoriteStatus)
-      setFavoritesCount((currentCount) =>
-        !newFavoriteStatus ? currentCount + 1 : currentCount - 1
-      )
+      console.error('Falha ao atualizar favorito:', err);
+      // 7. Reverte o estado em caso de erro
+      setDish(originalDish);
     }
   }
 
@@ -118,8 +123,8 @@ function RecipePage() {
           photo={dish.photo}
           name={dish.name}
           description={dish.description}
-          isFavorited={isFavorited}
-          favoritesCount={favoritesCount}
+          isFavorited={dish.isFavoritedByCurrentUser} // Lendo do 'dish'
+          favoritesCount={dish.favoritesCount}         // Lendo do 'dish'
           onToggleFavorite={handleToggleFavorite}
         />
         <div className="recipe-body-grid">
