@@ -1,9 +1,9 @@
-import { useNavigate, Link } from 'react-router-dom' // 1. Importar Link
+import { useNavigate, Link } from 'react-router-dom'
 import { useState } from 'react'
 import api from '../api'
 import './UserForm.css'
 import logo from '../assets/AppLogo.png'
-import { useAuth } from '../context/AuthContext' // 2. Importar useAuth
+import { useAuth } from '../context/AuthContext'
 
 function UserForm() {
   const [name, setName] = useState('')
@@ -12,14 +12,14 @@ function UserForm() {
   const [password, setPassword] = useState('')
 
   const [message, setMessage] = useState('')
-  const [loading, setLoading] = useState(false) // Estado de carregamento
+  const [loading, setLoading] = useState(false)
 
   const navigate = useNavigate()
-  const { login } = useAuth() // 3. Pegar a função de login
+  const { login } = useAuth()
 
   const onSubmit = async (event) => {
     event.preventDefault()
-    setLoading(true) // Ativa o loading
+    setLoading(true)
     setMessage('')
 
     const newUser = {
@@ -30,21 +30,19 @@ function UserForm() {
     }
 
     try {
-      // 4. O backend agora usa a rota 'register' e retorna dados
-      const response = await api.post('users/register', newUser) 
+      const response = await api.post('users/register', newUser)
 
-      // 5. Sucesso!
-      login(response.data) // Salva o novo usuário no contexto e localStorage
-      navigate('/') // Navega para a home (raiz)
+      login(response.data)
+      navigate('/')
 
     } catch (error) {
       console.log(`Erro na criação de usuário: ${error}`)
       if (error.response && error.response.data && error.response.data.message) {
-        setMessage(error.response.data.message); // Exibe erro da API
+        setMessage(error.response.data.message);
       } else {
         setMessage('Falha ao criar usuário. Tente novamente.');
       }
-      setLoading(false) // Desativa o loading em caso de erro
+      setLoading(false)
     }
   }
 
@@ -95,9 +93,8 @@ function UserForm() {
         </button>
       </form>
 
-      {message && <p className="form-error">{message}</p>} {/* 6. Classe de erro */}
+      {message && <p className="form-error">{message}</p>}
 
-      {/* 7. Link para a página de login */}
       <p className="toggle-link">
         Já tem uma conta? <Link to="/login">Faça login</Link>
       </p>

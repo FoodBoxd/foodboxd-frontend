@@ -9,7 +9,6 @@
   box-shadow: 0 4px 24px rgba(103, 103, 103, 0.46);
   /* box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3); */
 }
-/* ... (estilos de img, h2) ... */
 #createUserCard img {
   display: block;
   margin: 0 auto 1rem auto;
@@ -69,29 +68,26 @@
   border: none;
   border-radius: 8px;
   padding: 0.875rem 1rem;
-  cursor: pointer; /* Adicionado cursor */
+  cursor: pointer;
 }
 
 #userForm button:hover {
   background-color: #2e8b50;
 }
 
-/* NOVO: Estilo para botão desabilitado */
 #userForm button:disabled {
-  background-color: #2a3440; /* --header-border */
-  color: #9fb3c8; /* --text-muted */
+  background-color: #2a3440;
+  color: #9fb3c8;
   cursor: not-allowed;
 }
 
-/* NOVO: Estilo para mensagem de erro */
 .form-error {
-  color: #ff6b6b; /* Vermelho claro */
+  color: #ff6b6b;
   font-size: 0.9rem;
   text-align: center;
   margin: 0.5rem 0 0 0;
 }
 
-/* NOVO: Estilo para o link de alternância (Login/Registro) */
 .toggle-link {
   text-align: center;
   font-size: 0.9rem;
@@ -100,7 +96,6 @@
 }
 
 .toggle-link a {
-  /* Estilo do link */
   color: var(--brand-green, #37a762);
   font-weight: 600;
   text-decoration: none;
@@ -112,7 +107,6 @@
 
 @media (min-width: 480px) {
   #createUserCard {
-    /* ... (estilos media) ... */
     padding: 1.5rem;
     margin: 1.25rem auto;
   }

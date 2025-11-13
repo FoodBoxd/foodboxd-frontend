@@ -13,11 +13,11 @@ function LoginForm() {
   const [loading, setLoading] = useState(false)
 
   const navigate = useNavigate()
-  const { login } = useAuth() 
+  const { login } = useAuth()
 
   const onSubmit = async (event) => {
     event.preventDefault()
-    setLoading(true) 
+    setLoading(true)
     setMessage('')
 
     const userLogin = {
@@ -29,16 +29,16 @@ function LoginForm() {
       const response = await api.post('users/login', userLogin)
 
       login(response.data)
-      navigate('/') 
+      navigate('/')
 
     } catch (error) {
       console.log(`Erro no login de usuário: ${error}`)
       if (error.response && error.response.data && error.response.data.message) {
-        setMessage(error.response.data.message); 
+        setMessage(error.response.data.message);
       } else {
         setMessage('Falha ao logar usuário. Tente novamente.');
       }
-      setLoading(false) 
+      setLoading(false)
     }
   }
 
@@ -63,7 +63,7 @@ function LoginForm() {
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          required 
+          required
         />
 
         <button type="submit" disabled={loading}>

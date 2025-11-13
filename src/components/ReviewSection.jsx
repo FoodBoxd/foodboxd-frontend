@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import StarRating from './StarRating';
 import ReviewForm from './ReviewForm';
-import { useAuth } from '../context/AuthContext'; 
+import { useAuth } from '../context/AuthContext';
 import './ReviewSection.css';
 
 export default function ReviewSection({ ratings, dishId, onReviewSubmitted }) {
