@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import Carousel from '../components/Carousel'
 import Header from '../components/Header'
+import InfiniteFeed from '../components/InfiniteFeed'
 import api from '../api'
 import { useNavigate } from 'react-router-dom'
+import './HomePage.css'
 
 export default function HomePage() {
   const [dishes, setDishes] = useState([])
@@ -36,6 +38,9 @@ export default function HomePage() {
         itemWidth={170}
         onItemClick={item => navigate(`/dish/${item.id}`)}
       />
+      <div className="home-page-container">
+        <InfiniteFeed feedType="global" />
+      </div>
     </div>
   )
 }
