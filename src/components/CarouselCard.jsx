@@ -30,8 +30,9 @@ export default function CarouselCard({ item, widthPx, onClick }) {
           <div className="poster-fallback" />
         )}
       </div>
-
-      <div className="meta">{name || "—"}</div>
+      <div className="meta">
+        {name && <h3 className="card-title">{name}</h3>}
+      </div>
     </div>
   );
 }
