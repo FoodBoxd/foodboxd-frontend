@@ -11,21 +11,25 @@ const DishGridCard = ({ dish, onClick }) => {
       </div>
       <div className="dish-card-meta">
         <span className="dish-card-name">{dish.dishName}</span>
-        <div className="dish-card-rating">
-          <StarRating score={dish.userScore} />
-        </div>
+
+        {typeof dish.userScore === 'number' && (
+          <div className="dish-card-rating">
+            <StarRating score={dish.userScore} />
+          </div>
+        )}
+
       </div>
     </div>
   )
 }
 
-export default function ProfileDishGrid({ dishes }) {
+export default function ProfileDishGrid({ dishes, emptyMessage }) {
   const navigate = useNavigate()
 
   if (!dishes || dishes.length === 0) {
     return (
       <p className="profile-grid-empty">
-        Este usuário ainda não avaliou nenhum prato.
+        {emptyMessage || 'Nenhum item para exibir.'}
       </p>
     )
   }

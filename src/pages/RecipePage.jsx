@@ -15,6 +15,8 @@ function RecipePage() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const { user } = useAuth()
+  const [isFavorited, setIsFavorited] = useState(false)
+  const [favoritesCount, setFavoritesCount] = useState(0)
 
   const refreshDishData = async () => {
     setError(null);
@@ -23,6 +25,8 @@ function RecipePage() {
 
       const response = await api.get(`dishes/${dishId}`, { params });
       setDish(response.data);
+      setIsFavorited(response.data.isFavoritedByCurrentUser)
+      setFavoritesCount(response.data.favoritesCount)
     } catch (err) {
       console.error('Falha ao atualizar dados do prato:', err);
       setError('Não foi possível atualizar os dados.');
@@ -51,6 +55,32 @@ function RecipePage() {
 
   const handleReviewSubmitted = async () => {
     await refreshDishData();
+  }
+
+  const handleToggleFavorite = async () => {
+    const currentUserId = user.userId
+
+    const newFavoriteStatus = !isFavorited
+    setIsFavorited(newFavoriteStatus)
+    setFavoritesCount((currentCount) =>
+      newFavoriteStatus ? currentCount + 1 : currentCount - 1
+    )
+
+    try {
+      const response = await api.post('favorites/toggle', {
+        userId: currentUserId,
+        dishId: parseInt(dishId),
+      })
+
+      setIsFavorited(response.data.favorited)
+      setFavoritesCount(response.data.favoritesCount)
+    } catch (err) {
+      console.error('Falha ao atualizar favorito:', err)
+      setIsFavorited(!newFavoriteStatus)
+      setFavoritesCount((currentCount) =>
+        !newFavoriteStatus ? currentCount + 1 : currentCount - 1
+      )
+    }
   }
 
   if(loading) {
@@ -88,6 +118,9 @@ function RecipePage() {
           photo={dish.photo}
           name={dish.name}
           description={dish.description}
+          isFavorited={isFavorited}
+          favoritesCount={favoritesCount}
+          onToggleFavorite={handleToggleFavorite}
         />
         <div className="recipe-body-grid">
           <div className="recipe-main-content">

@@ -13,6 +13,8 @@ export default function UserProfilePage() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
 
+  const [activeTab, setActiveTab] = useState('ratings')
+
   useEffect(() => {
     const fetchProfile = async () => {
       setLoading(true)
@@ -48,6 +50,16 @@ export default function UserProfilePage() {
     )
   }
 
+  const dishesToShow =
+    activeTab === 'ratings'
+      ? profile?.ratedDishes
+      : profile?.favoriteDishes
+
+  const emptyMessage =
+    activeTab === 'ratings'
+      ? 'Este usuário ainda não avaliou nenhum prato.'
+      : 'Este usuário ainda não favoritou nenhum prato.'
+
   return (
     <div className="profile-page-container">
       <Header />
@@ -71,20 +83,18 @@ export default function UserProfilePage() {
                 <span className="stat-value">{profile.stats.averageScore.toFixed(1)}★</span>
                 <span className="stat-label">Média</span>
             </div>
-            {/* <div className="stat-item">
-                <span className="stat-value">{profile.stats.followers}</span>
-                <span className="stat-label">Seguidores</span>
-                </div>
-            // TODO: verificar feature de seguidores
-            <div className="stat-item">
-                <span className="stat-value">{profile.stats.following}</span>
-                <span className="stat-label">Seguindo</span>
-            </div> */}
         </div>
 
-        <ProfileTabs />
 
-        <ProfileDishGrid dishes={profile.ratedDishes} />
+        <ProfileTabs
+          activeTab={activeTab}
+          onTabChange={setActiveTab}
+        />
+
+        <ProfileDishGrid
+          dishes={dishesToShow}
+          emptyMessage={emptyMessage}
+        />
       </div>
     </div>
   )

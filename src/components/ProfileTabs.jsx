@@ -1,20 +1,19 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './ProfileTabs.css'
 
-export default function ProfileTabs() {
-  const [activeTab, setActiveTab] = useState('ratings')
+export default function ProfileTabs({ activeTab, onTabChange }) {
 
   return (
     <div className="profile-tabs">
       <button
         className={`tab-btn ${activeTab === 'ratings' ? 'active' : ''}`}
-        onClick={() => setActiveTab('ratings')}
+        onClick={() => onTabChange('ratings')}
       >
         Pratos Avaliados
       </button>
       <button
         className={`tab-btn ${activeTab === 'favorites' ? 'active' : ''}`}
-        onClick={() => setActiveTab('favorites')}
+        onClick={() => onTabChange('favorites')}
       >
         Favoritos
       </button>
