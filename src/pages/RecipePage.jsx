@@ -16,29 +16,41 @@ function RecipePage() {
   const [error, setError] = useState(null)
   const { user } = useAuth()
 
-  const fetchDish = async () => {
-    setLoading(true)
-    setError(null)
+  const refreshDishData = async () => {
+    setError(null);
     try {
       const params = user ? { userId: user.userId } : {};
 
       const response = await api.get(`dishes/${dishId}`, { params });
-
-      setDish(response.data)
+      setDish(response.data);
     } catch (err) {
-      console.error('Falha ao buscar detalhes do prato:', err)
-      setError('Não foi possível carregar os dados do prato.')
+      console.error('Falha ao atualizar dados do prato:', err);
+      setError('Não foi possível atualizar os dados.');
+    }
+  }
+
+  const fetchDishWithLoading = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const params = user ? { userId: user.userId } : {};
+
+      const response = await api.get(`dishes/${dishId}`, { params });
+      setDish(response.data);
+    } catch (err) {
+      console.error('Falha ao buscar detalhes do prato:', err);
+      setError('Não foi possível carregar os dados do prato.');
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
   }
 
   useEffect(() => {
-    fetchDish()
-  }, [dishId, user])
+    fetchDishWithLoading();
+  }, [dishId, user]);
 
   const handleReviewSubmitted = async () => {
-    await fetchDish();
+    await refreshDishData();
   }
 
   if(loading) {
