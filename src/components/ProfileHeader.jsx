@@ -1,7 +1,12 @@
 import React from 'react'
 import './ProfileHeader.css'
 
-export default function ProfileHeader({ name, bio }) {
+export default function ProfileHeader({ 
+  name, 
+  bio, 
+  isOwnProfile, 
+  onEditClick 
+}) {
 
   return (
     <div className="profile-header">
@@ -15,8 +20,11 @@ export default function ProfileHeader({ name, bio }) {
         </p>
       </div>
       <div className="profile-actions">
-        <button className="edit-profile-btn">Editar Perfil</button>
-        {/* TODO: criar form para editar perfil */}
+        {isOwnProfile && (
+          <button className="edit-profile-btn" onClick={onEditClick}>
+            Editar Perfil
+          </button>
+        )}
       </div>
     </div>
   )
