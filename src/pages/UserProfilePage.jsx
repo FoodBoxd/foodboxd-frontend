@@ -5,15 +5,22 @@ import Header from '../components/Header'
 import ProfileHeader from '../components/ProfileHeader'
 import ProfileTabs from '../components/ProfileTabs'
 import ProfileDishGrid from '../components/ProfileDishGrid'
+import EditProfileForm from '../components/EditProfileForm' // Importação correta
+import { useAuth } from '../context/AuthContext' // Importação correta
 import './UserProfilePage.css'
 
 export default function UserProfilePage() {
-  const { userId } = useParams()
+  const { userId } = useParams() // ID da URL (string)
   const [profile, setProfile] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
-
   const [activeTab, setActiveTab] = useState('ratings')
+
+  const [isEditing, setIsEditing] = useState(false)
+  const { user, login } = useAuth() // Obter o usuário logado
+
+  // Compara o ID do usuário logado (number) com o ID da URL (string)
+  const isOwnProfile = user && user.userId == userId
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -31,6 +38,30 @@ export default function UserProfilePage() {
 
     fetchProfile()
   }, [userId])
+
+  const handleSaveProfile = async (formData) => {
+    if (!isOwnProfile) {
+      throw new Error('Não autorizado')
+    }
+
+    const payload = {
+      authUserId: user.userId, // Verificação de segurança no backend
+      name: formData.name,
+      biography: formData.bio,
+    }
+
+    const { data } = await api.put(`users/${user.userId}/profile`, payload)
+
+    setProfile((prev) => ({
+      ...prev,
+      name: data.name,
+      biography: data.biography,
+    }))
+
+    if (user.name !== data.name) {
+      login({ ...user, name: data.name })
+    }
+  }
 
   if (loading) {
     return (
@@ -67,35 +98,43 @@ export default function UserProfilePage() {
         <ProfileHeader
           name={profile.name}
           bio={profile.biography}
-          // TODO: implementar avatar de foto
+          isOwnProfile={isOwnProfile}
+          onEditClick={() => setIsEditing(true)}
         />
 
         <div className="profile-stats-bar">
-            <div className="stat-item">
-                <span className="stat-value">{profile.stats.dishesRated}</span>
-                <span className="stat-label">Pratos</span>
-            </div>
-            <div className="stat-item">
-                <span className="stat-value">{profile.stats.reviewsCount}</span>
-                <span className="stat-label">Reviews</span>
-            </div>
-            <div className="stat-item">
-                <span className="stat-value">{profile.stats.averageScore.toFixed(1)}★</span>
-                <span className="stat-label">Média</span>
-            </div>
+          <div className="stat-item">
+            <span className="stat-value">{profile.stats.dishesRated}</span>
+            <span className="stat-label">Pratos</span>
+          </div>
+          <div className="stat-item">
+            <span className="stat-value">{profile.stats.reviewsCount}</span>
+            <span className="stat-label">Reviews</span>
+          </div>
+          <div className="stat-item">
+            <span className="stat-value">
+              {profile.stats.averageScore.toFixed(1)}★
+            </span>
+            <span className="stat-label">Média</span>
+          </div>
         </div>
 
+        <ProfileTabs activeTab={activeTab} onTabChange={setActiveTab} />
 
-        <ProfileTabs
-          activeTab={activeTab}
-          onTabChange={setActiveTab}
-        />
-
-        <ProfileDishGrid
-          dishes={dishesToShow}
-          emptyMessage={emptyMessage}
-        />
+        <ProfileDishGrid dishes={dishesToShow} emptyMessage={emptyMessage} />
       </div>
+
+      {/* AQUI ESTÁ A MUDANÇA:
+        Esta linha usa o componente 'EditProfileForm' que você importou.
+        Sem ela, o import fica cinza e o botão não tem o que abrir.
+      */}
+      {isEditing && (
+        <EditProfileForm
+          currentUser={profile}
+          onClose={() => setIsEditing(false)}
+          onSave={handleSaveProfile}
+        />
+      )}
     </div>
   )
 }
