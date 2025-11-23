@@ -5,6 +5,7 @@ import Header from '../components/Header'
 import ProfileHeader from '../components/ProfileHeader'
 import ProfileTabs from '../components/ProfileTabs'
 import ProfileDishGrid from '../components/ProfileDishGrid'
+import EditProfileForm from '../components/EditProfileForm'
 import LoadingSpinner from '../components/LoadingSpinner'
 import { useAuth } from '../context/AuthContext'
 import './UserProfilePage.css'
@@ -19,6 +20,11 @@ export default function UserProfilePage() {
   const isMyProfile = user && user.userId === parseInt(userId);
 
   const [activeTab, setActiveTab] = useState('ratings')
+
+  const [isEditing, setIsEditing] = useState(false)
+  const { user, login } = useAuth()
+
+  const isOwnProfile = user && user.userId == userId
 
   useEffect(() => {
     const fetchProfile = async () => {
@@ -37,6 +43,30 @@ export default function UserProfilePage() {
 
     fetchProfile()
   }, [userId])
+
+  const handleSaveProfile = async (formData) => {
+    if (!isOwnProfile) {
+      throw new Error('Não autorizado')
+    }
+
+    const payload = {
+      authUserId: user.userId,
+      name: formData.name,
+      biography: formData.bio,
+    }
+
+    const { data } = await api.put(`users/${user.userId}/profile`, payload)
+
+    setProfile((prev) => ({
+      ...prev,
+      name: data.name,
+      biography: data.biography,
+    }))
+
+    if (user.name !== data.name) {
+      login({ ...user, name: data.name })
+    }
+  }
 
   if (loading) {
     return (
@@ -74,35 +104,38 @@ export default function UserProfilePage() {
           name={profile.name}
           bio={profile.biography}
           isMyProfile={isMyProfile}
-          // TODO: implementar avatar de foto
+          isOwnProfile={isOwnProfile}
+          onEditClick={() => setIsEditing(true)}
         />
 
         <div className="profile-stats-bar">
-            <div className="stat-item">
-                <span className="stat-value">{profile.stats.dishesRated}</span>
-                <span className="stat-label">Pratos</span>
-            </div>
-            <div className="stat-item">
-                <span className="stat-value">{profile.stats.reviewsCount}</span>
-                <span className="stat-label">Reviews</span>
-            </div>
-            <div className="stat-item">
-                <span className="stat-value">{profile.stats.averageScore.toFixed(1)}★</span>
-                <span className="stat-label">Média</span>
-            </div>
+          <div className="stat-item">
+            <span className="stat-value">{profile.stats.dishesRated}</span>
+            <span className="stat-label">Pratos</span>
+          </div>
+          <div className="stat-item">
+            <span className="stat-value">{profile.stats.reviewsCount}</span>
+            <span className="stat-label">Reviews</span>
+          </div>
+          <div className="stat-item">
+            <span className="stat-value">
+              {profile.stats.averageScore.toFixed(1)}★
+            </span>
+            <span className="stat-label">Média</span>
+          </div>
         </div>
 
+        <ProfileTabs activeTab={activeTab} onTabChange={setActiveTab} />
 
-        <ProfileTabs
-          activeTab={activeTab}
-          onTabChange={setActiveTab}
-        />
-
-        <ProfileDishGrid
-          dishes={dishesToShow}
-          emptyMessage={emptyMessage}
-        />
+        <ProfileDishGrid dishes={dishesToShow} emptyMessage={emptyMessage} />
       </div>
+      {isEditing && (
+        <EditProfileForm
+          currentUser={profile}
+          onClose={() => setIsEditing(false)}
+          onSave={handleSaveProfile}
+        />
+      )}
     </div>
   )
 }
