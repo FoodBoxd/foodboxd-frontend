@@ -6,6 +6,7 @@ import ProfileHeader from '../components/ProfileHeader'
 import ProfileTabs from '../components/ProfileTabs'
 import ProfileDishGrid from '../components/ProfileDishGrid'
 import EditProfileForm from '../components/EditProfileForm'
+import LoadingSpinner from '../components/LoadingSpinner'
 import { useAuth } from '../context/AuthContext'
 import './UserProfilePage.css'
 
@@ -14,6 +15,10 @@ export default function UserProfilePage() {
   const [profile, setProfile] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+   const { user } = useAuth();
+
+  const isMyProfile = user && user.userId === parseInt(userId);
+
   const [activeTab, setActiveTab] = useState('ratings')
 
   const [isEditing, setIsEditing] = useState(false)
@@ -24,6 +29,7 @@ export default function UserProfilePage() {
   useEffect(() => {
     const fetchProfile = async () => {
       setLoading(true)
+      setError(null);
       try {
         const { data } = await api.get(`users/${userId}/profile`)
         setProfile(data)
@@ -66,7 +72,7 @@ export default function UserProfilePage() {
     return (
       <>
         <Header />
-        <div className="profile-page-status">Carregando...</div>
+        <LoadingSpinner />
       </>
     )
   }
@@ -97,6 +103,7 @@ export default function UserProfilePage() {
         <ProfileHeader
           name={profile.name}
           bio={profile.biography}
+          isMyProfile={isMyProfile}
           isOwnProfile={isOwnProfile}
           onEditClick={() => setIsEditing(true)}
         />
