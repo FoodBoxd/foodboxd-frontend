@@ -21,11 +21,11 @@ const fetchDishData = async () => {
     try {
       const params = user ? { userId: user.userId } : {};
       const response = await api.get(`dishes/${dishId}`, { params });
-      
+
       if (!response.data) {
         setError('Prato não encontrado.');
       } else {
-        setDish(response.data); // 'dish' é nossa única fonte da verdade
+        setDish(response.data);
       }
     } catch (err) {
       console.error('Falha ao buscar detalhes do prato:', err);
@@ -52,9 +52,8 @@ useEffect(() => {
       return;
     }
     const currentUserId = user.userId;
-    const originalDish = dish; // Salva para reverter em caso de erro
+    const originalDish = dish;
 
-    // 5. Atualização Otimista: atualiza o 'dish' localmente
     setDish((currentDish) => {
       const newFavoriteStatus = !currentDish.isFavoritedByCurrentUser;
       const newFavoritesCount = newFavoriteStatus
@@ -69,13 +68,11 @@ useEffect(() => {
     });
 
     try {
-      // Envia a requisição
       const response = await api.post('favorites/toggle', {
         userId: currentUserId,
         dishId: parseInt(dishId),
       });
 
-      // 6. Sincroniza com a resposta da API (atualiza 'dish' de novo)
       setDish((currentDish) => ({
         ...currentDish,
         isFavoritedByCurrentUser: response.data.favorited,
@@ -83,7 +80,6 @@ useEffect(() => {
       }));
     } catch (err) {
       console.error('Falha ao atualizar favorito:', err);
-      // 7. Reverte o estado em caso de erro
       setDish(originalDish);
     }
   }
@@ -123,8 +119,8 @@ useEffect(() => {
           photo={dish.photo}
           name={dish.name}
           description={dish.description}
-          isFavorited={dish.isFavoritedByCurrentUser} // Lendo do 'dish'
-          favoritesCount={dish.favoritesCount}         // Lendo do 'dish'
+          isFavorited={dish.isFavoritedByCurrentUser}
+          favoritesCount={dish.favoritesCount}
           onToggleFavorite={handleToggleFavorite}
         />
         <div className="recipe-body-grid">
