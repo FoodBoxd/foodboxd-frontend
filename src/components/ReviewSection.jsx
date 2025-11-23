@@ -5,6 +5,7 @@ import ReviewForm from './ReviewForm';
 import LikeButton from './LikeButton';
 import api from '../api';
 import { useAuth } from '../context/AuthContext';
+import UserAvatar from './UserAvatar';
 
 export default function ReviewSection({ ratings, dishId, onReviewSubmitted }) {
 
@@ -42,7 +43,15 @@ export default function ReviewSection({ ratings, dishId, onReviewSubmitted }) {
           ratings.map((rating) => (
             <div key={rating.ratingId} className="review-card">
               <div className="review-header">
-                <span className="review-user">{rating.user?.name || 'Anônimo'}</span>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                  <UserAvatar
+                    src={rating.user?.profilePhoto}
+                    name={rating.user?.name}
+                    size="24px"
+                    fontSize="0.7rem"
+                  />
+                  <span className="review-user">{rating.user?.name || 'Anônimo'}</span>
+                </div>
                 <StarRating score={rating.score} />
               </div>
 

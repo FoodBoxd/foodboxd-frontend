@@ -1,18 +1,19 @@
 import React from 'react'
+import UserAvatar from './UserAvatar'
 import './ProfileHeader.css'
 
-export default function ProfileHeader({ 
-  name, 
-  bio, 
-  isOwnProfile, 
-  onEditClick 
-}) {
+export default function ProfileHeader({ name, bio, isOwnProfile, onEditClick, profilePhoto }) {
 
   return (
     <div className="profile-header">
-      <div className="profile-avatar">
-        <span>{name ? name[0] : 'U'}</span>
-      </div>
+      <UserAvatar
+         src={profilePhoto}
+         name={name}
+         size="128px"
+         fontSize="4rem"
+         className="profile-avatar-display"
+      />
+
       <div className="profile-info">
         <h1 className="profile-name">{name || 'Usuário'}</h1>
         <p className="profile-bio">

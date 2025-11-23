@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import StarRating from './StarRating';
+import UserAvatar from './UserAvatar';
 import './FeedPost.css';
 
 function formatTimeAgo(dateString) {
@@ -49,9 +50,9 @@ export default function FeedPost({ post }) {
 
       <div className="feed-post-main">
         <div className="feed-post-header">
-          <Link to={`/user/${user.userId}`} className="feed-user-avatar">
-            {user.name ? user.name[0] : '?'}
-          </Link>
+        <Link to={`/user/${user.userId}`} className="feed-user-avatar-link">
+          <UserAvatar src={user.profilePhoto} name={user.name} size="32px" fontSize="1rem" />
+        </Link>
           <div className="feed-header-info">
             <span className="feed-text-line">
               <Link to={`/user/${user.userId}`} className="feed-user-name">

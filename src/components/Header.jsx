@@ -1,6 +1,7 @@
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import "./Header.css";
+import UserAvatar from "./UserAvatar";
 import appLogo from "../assets/FoodboxdLogo.png";
 
 export default function Header() {
@@ -42,9 +43,16 @@ export default function Header() {
         <div className="header-right">
           {isAuthenticated ? (
             <>
-              <Link to={`/user/${user.userId}`} className="header-user-name">
-                {user.name}
+              <Link to={`/user/${user.userId}`} className="header-user-link">
+                <UserAvatar
+                  src={user.profilePhoto}
+                  name={user.name}
+                  size="32px"
+                  fontSize="0.9rem"
+                />
+                <span className="header-user-name">{user.name}</span>
               </Link>
+
               <button onClick={handleLogout} className="logout-button">
                 Sair
               </button>

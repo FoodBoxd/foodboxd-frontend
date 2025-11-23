@@ -52,18 +52,32 @@ export default function UserProfilePage() {
       authUserId: user.userId,
       name: formData.name,
       biography: formData.bio,
+      profilePhoto: formData.profilePhoto,
+      birthdate: formData.birthdate,
     }
 
-    const { data } = await api.put(`users/${user.userId}/profile`, payload)
+    try {
+      const { data } = await api.put(`users/${user.userId}/profile`, payload)
 
-    setProfile((prev) => ({
-      ...prev,
-      name: data.name,
-      biography: data.biography,
-    }))
+      setProfile((prev) => ({
+        ...prev,
+        name: data.name,
+        biography: data.biography,
+        profilePhoto: data.profilePhoto,
+        birthdate: data.birthdate
+      }))
 
-    if (user.name !== data.name) {
-      login({ ...user, name: data.name })
+      if (user.name !== data.name || user.profilePhoto !== data.profilePhoto) {
+        login({
+          ...user,
+          name: data.name,
+          profilePhoto: data.profilePhoto
+        })
+      }
+
+      setIsEditing(false)
+    } catch (err) {
+      console.error(err)
     }
   }
 
@@ -102,6 +116,7 @@ export default function UserProfilePage() {
         <ProfileHeader
           name={profile.name}
           bio={profile.biography}
+          profilePhoto={profile.profilePhoto}
           isMyProfile={isMyProfile}
           isOwnProfile={isOwnProfile}
           onEditClick={() => setIsEditing(true)}

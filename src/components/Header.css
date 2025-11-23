@@ -125,3 +125,33 @@
     font-size: 0.8rem;
   }
 }
+
+.header-user-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: inherit;
+  transition: opacity 0.2s;
+}
+
+.header-user-link:hover {
+  opacity: 0.8;
+}
+
+.header-user-name {
+  color: var(--text, #e6edf3);
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+@media (max-width: 480px) {
+  .header-user-name {
+    display: none;
+  }
+
+  .header-user-link {
+    gap: 0;
+  }
+}
