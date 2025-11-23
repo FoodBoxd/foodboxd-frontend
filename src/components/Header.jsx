@@ -34,6 +34,7 @@ export default function Header() {
             <NavLink
               to="/search"
               className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}
+              
             >
               Pratos
             </NavLink>

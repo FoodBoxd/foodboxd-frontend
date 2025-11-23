@@ -1,44 +1,30 @@
 .recipe-page-container {
   width: 100%;
-  max-width: 1200px; /* Alinhado ao header-container */
+  max-width: 1200px;
   margin: 0 auto;
-  color: #e6edf3; /* Padrão do Header.css --text */
-  text-align: left; /* Reseta o text-align: center do #root */
-  overflow-x: none;
+  padding: 0 24px 48px 24px;
 }
 
 .recipe-page-content {
-  padding-top: 1.5rem;
+  animation: fadeIn 0.5s ease;
 }
 
-.page-loading,
-.page-error {
-  padding: 2rem;
-  text-align: center;
-  font-size: 1.2rem;
-  color: #9fb3c8; /* Padrão do Header.css --text-muted */
-}
-
-/* Layout principal inspirado no Letterboxd (conteúdo + sidebar) */
 .recipe-body-grid {
   display: grid;
-  grid-template-columns: 3fr 1fr;
-  gap: 1.5rem;
-  margin-top: 1.5rem;
+  grid-template-columns: 1fr 320px;
+  gap: 3rem;
+  margin-top: 2rem;
 }
 
 .recipe-main-content {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 2.5rem;
 }
 
-/* Layout Mobile */
-@media (max-width: 768px) {
+@media (max-width: 900px) {
   .recipe-body-grid {
     grid-template-columns: 1fr;
-  }
-  .recipe-sidebar {
-    display: none; /* Oculta sidebar no mobile */
+    gap: 2rem;
   }
 }

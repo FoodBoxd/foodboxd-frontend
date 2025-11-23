@@ -1,82 +1,72 @@
 .search-page-container {
   width: 100%;
-  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 16px;
+  padding: 2rem 16px;
+}
+
+.search-results-container {
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
 .search-content {
-  padding-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
 .search-bar-wrapper {
   position: relative;
+  max-width: 600px;
+  margin: 0 auto;
   width: 100%;
-  max-width: 800px;
-  margin: 0 auto 2rem auto;
 }
 
 .search-input {
   width: 100%;
-  padding: 1rem 1.25rem 1rem 3.5rem;
-  border-radius: 12px;
-  font-size: 1.125rem;
-  border: 1px solid var(--header-border, #2a3440);
-  background: var(--header-bg, #14181c);
-  color: var(--text, #e6edf3);
-  box-sizing: border-box;
+  padding: 16px 16px 16px 50px;
+  border-radius: var(--radius-full);
+  border: 2px solid var(--border-subtle);
+  background-color: var(--bg-card);
+  color: var(--text-main);
+  font-size: 1.1rem;
+  transition: all 0.2s;
 }
 
 .search-input:focus {
-  outline: 2px solid var(--loader-green, #37a762);
-  border-color: var(--loader-green, #37a762);
+  outline: none;
+  border-color: var(--brand-green);
+  background-color: var(--bg-input);
+  box-shadow: 0 0 0 1px var(--brand-blue);
 }
 
 .search-input-icon {
   position: absolute;
-  left: 1.25rem;
+  left: 20px;
   top: 50%;
   transform: translateY(-50%);
-  color: var(--text-muted, #9fb3c8);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.search-results-container {
-  text-align: left;
+  color: var(--text-muted);
 }
 
 .results-title {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: #fff;
-  margin-top: 0;
-  margin-bottom: 1.5rem;
+  font-size: 1.25rem;
+  border-bottom: 1px solid var(--border-subtle);
   padding-bottom: 0.5rem;
-  border-bottom: 1px solid var(--header-border, #2a3440);
+  margin-bottom: 1.5rem;
+  color: var(--brand-green);
 }
 
 .results-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 1.25rem;
-}
-
-.results-grid .carousel-card {
-  width: 100% !important;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 16px;
 }
 
 .no-results-message,
 .error-message {
   text-align: center;
-  padding: 3rem 1rem;
-  color: var(--text-muted, #9fb3c8);
-  font-size: 1.1rem;
-  font-style: italic;
+  padding: 3rem;
+  color: var(--text-muted);
 }
 
-.error-message {
-  color: #ff6b6b;
-  font-style: normal;
-}
+.error-message { color: #ff6b6b; }

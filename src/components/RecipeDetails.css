@@ -1,17 +1,23 @@
+.recipe-details-section {
+  background-color: var(--bg-card);
+  border-radius: var(--radius-md);
+  padding: 2rem;
+  border: 1px solid var(--border-subtle);
+}
+
 .recipe-details-section h2 {
   font-size: 1.5rem;
-  font-weight: 600;
-  color: #fff;
-  margin-top: 0;
-  margin-bottom: 1rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 1px solid var(--header-border, #2a3440); /* Reusa variável do Header.css */
+  color: var(--brand-blue);
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .recipe-instructions {
-  font-size: 1rem;
-  line-height: 1.7;
-  color: #cdd9e5; /* Um pouco mais claro que o muted */
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
 }
 
 .recipe-instructions ol {
@@ -19,5 +25,6 @@
 }
 
 .recipe-instructions li {
-  margin-bottom: 0.75rem;
+  margin-bottom: 1rem;
+  padding-left: 0.5rem;
 }

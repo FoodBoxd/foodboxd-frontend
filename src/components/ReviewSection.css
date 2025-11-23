@@ -1,22 +1,10 @@
 .review-section {
-  margin-top: 2rem;
+  margin-top: 3rem;
 }
 
 .review-section h2 {
   font-size: 1.5rem;
-  font-weight: 600;
-  color: #fff;
-  margin-top: 0;
-  margin-bottom: 1rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 1px solid var(--header-border, #2a3440); /* Reusa variável do Header.css */
-}
-
-/* Novo estilo para o divisor */
-.review-divider {
-  height: 1px;
-  background-color: var(--header-border, #2a3440);
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .review-list {
@@ -26,10 +14,10 @@
 }
 
 .review-card {
-  background-color: #242424;
-  border: 1px solid #3a3a3a;
-  border-radius: 8px;
-  padding: 1rem 1.25rem;
+  background-color: var(--bg-card);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 1.5rem;
+  border-radius: var(--radius-md);
 }
 
 .review-header {
@@ -40,29 +28,28 @@
 }
 
 .review-user {
-  font-weight: 600;
-  color: #fff;
+  font-weight: 700;
+  color: var(--text-main);
 }
 
 .review-comment {
-  font-size: 0.95rem;
+  color: var(--text-secondary);
+  font-size: 1rem;
   line-height: 1.6;
-  color: #cdd9e5;
-  margin: 0;
-  margin-bottom: 0.75rem;
+  margin-bottom: 1rem;
 }
 
 .review-footer {
   display: flex;
   justify-content: flex-end;
-  margin-top: 0.5rem;
-}
-
-.review-comment:empty {
-  margin-bottom: 0;
+  opacity: 0.8;
 }
 
 .no-reviews {
-  color: #9fb3c8;
-  font-style: italic;
+  text-align: center;
+  padding: 3rem;
+  color: var(--text-muted);
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+  border: 1px dashed var(--border-subtle);
 }

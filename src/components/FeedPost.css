@@ -1,13 +1,15 @@
 .feed-post-card {
   display: flex;
-  gap: 1rem;
-  padding: 1rem;
-  background-color: var(--header-bg, #14181c);
-  border: 1px solid var(--header-border, #2a3440);
-  border-radius: 8px;
-  max-width: 700px;
-  width: 100%;
-  box-sizing: border-box;
+  gap: 1.25rem;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1.25rem;
+  transition: border-color 0.2s;
+}
+
+.feed-post-card:hover {
+  border-color: #444;
 }
 
 .feed-post-sidebar {
@@ -16,11 +18,11 @@
 
 .feed-dish-poster-link {
   display: block;
-  width: 65px;
-  height: 65px;
-  border-radius: 6px;
+  width: 72px;
+  height: 72px;
+  border-radius: var(--radius-sm);
   overflow: hidden;
-  border: 1px solid var(--header-border, #2a3440);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
 .feed-dish-poster {
@@ -30,81 +32,70 @@
 }
 
 .feed-post-main {
-  flex-grow: 1;
-  width: calc(100% - 65px - 1rem);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .feed-post-header {
   display: flex;
-  align-items: flex-start;
-  gap: 0.75rem;
-  margin-bottom: 0.5rem;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 0.75rem;
 }
 
 .feed-user-avatar {
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
-  background-color: #f77f00;
+  background-color: var(--brand-orange);
   color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 600;
-  font-size: 1rem;
-  flex-shrink: 0;
+  font-weight: 700;
+  font-size: 0.9rem;
   text-decoration: none;
 }
 
 .feed-header-info {
   display: flex;
   flex-direction: column;
-  color: var(--text-muted, #9fb3c8);
-  font-size: 0.9rem;
+  line-height: 1.3;
 }
 
-.feed-text-line a {
-  color: var(--text, #e6edf3);
-  font-weight: 600;
-  text-decoration: none;
+.feed-user-name {
+  font-weight: 700;
+  color: var(--text-main);
 }
-.feed-text-line a:hover {
+
+.feed-dish-name {
+  color: var(--brand-green);
+  font-weight: 600;
+}
+
+.feed-dish-name:hover {
   text-decoration: underline;
 }
 
 .feed-metadata {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  margin-top: 0.25rem;
-}
-
-.feed-metadata .star-rating {
-  font-size: 0.9rem;
-}
-.feed-metadata .star-svg {
-  width: 1em;
-  height: 1em;
+  gap: 0.75rem;
+  margin-top: 4px;
+  font-size: 0.85rem;
 }
 
 .feed-time {
-  font-size: 0.8rem;
-  color: var(--text-muted, #9fb3c8);
+  color: var(--text-muted);
 }
 
 .feed-post-comment {
-  margin-top: 0.75rem;
-  background-color: #242424;
-  border-radius: 6px;
-  padding: 0.75rem 1rem;
-}
-
-.feed-post-comment p {
-  margin: 0;
-  color: var(--text, #e6edf3);
+  background-color: var(--bg-input);
+  padding: 12px;
+  border-radius: var(--radius-sm);
+  border-left: 3px solid var(--border-subtle);
+  color: var(--text-secondary);
   font-size: 0.95rem;
   line-height: 1.6;
-  overflow-wrap: break-word;
-  word-wrap: break-word;
-  word-break: break-word;
 }
