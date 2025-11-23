@@ -22,9 +22,9 @@ function RecipePage() {
     setError(null);
     try {
       const params = user ? { userId: user.userId } : {};
-
       const response = await api.get(`dishes/${dishId}`, { params });
       setDish(response.data);
+
       setIsFavorited(response.data.isFavoritedByCurrentUser)
       setFavoritesCount(response.data.favoritesCount)
     } catch (err) {
@@ -41,6 +41,10 @@ function RecipePage() {
 
       const response = await api.get(`dishes/${dishId}`, { params });
       setDish(response.data);
+
+      setIsFavorited(response.data.isFavoritedByCurrentUser)
+      setFavoritesCount(response.data.favoritesCount)
+
     } catch (err) {
       console.error('Falha ao buscar detalhes do prato:', err);
       setError('Não foi possível carregar os dados do prato.');
@@ -58,7 +62,15 @@ function RecipePage() {
   }
 
   const handleToggleFavorite = async () => {
+    if (!user) {
+        alert("Você precisa estar logado para favoritar.");
+        return;
+    }
+
     const currentUserId = user.userId
+
+    const previousFavorited = isFavorited;
+    const previousCount = favoritesCount;
 
     const newFavoriteStatus = !isFavorited
     setIsFavorited(newFavoriteStatus)
@@ -76,10 +88,8 @@ function RecipePage() {
       setFavoritesCount(response.data.favoritesCount)
     } catch (err) {
       console.error('Falha ao atualizar favorito:', err)
-      setIsFavorited(!newFavoriteStatus)
-      setFavoritesCount((currentCount) =>
-        !newFavoriteStatus ? currentCount + 1 : currentCount - 1
-      )
+      setIsFavorited(previousFavorited)
+      setFavoritesCount(previousCount)
     }
   }
 
