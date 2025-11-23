@@ -61,19 +61,24 @@
   transition: all 0.2s ease;
 }
 
+.favorite-btn:focus {
+  outline: none;
+}
+
 .favorite-btn:hover {
   background-color: #3a3a3a;
   color: #fff;
 }
 
 .favorite-btn.favorited {
-  background-color: #ff80ab26;
-  color: #ff80ab;
+  background-color: rgba(255, 193, 7, 0.15);
+  color: #ffc107;
+  border: 1px solid rgba(255, 193, 7, 0.3);
 }
 
 .favorite-btn.favorited:hover {
-  background-color: #ff80ab40;
-  color: #fcc2d9;
+  background-color: rgba(255, 193, 7, 0.25);
+  color: #ffca28;
 }
 
 @media (max-width: 600px) {

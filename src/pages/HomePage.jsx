@@ -7,38 +7,65 @@ import { useNavigate } from 'react-router-dom'
 import './HomePage.css'
 
 export default function HomePage() {
-  const [dishes, setDishes] = useState([])
-
+  const [topRatedDishes, setTopRatedDishes] = useState([])
+  const [topFavoritedDishes, setTopFavoritedDishes] = useState([])
   const navigate = useNavigate()
 
+  const formatDishForCarousel = (data) => {
+    return data.map((dish) => ({
+      id: dish.dishId,
+      imageUrl: dish.photo,
+      name: dish.name,
+    }))
+  }
+
   useEffect(() => {
-    const getDishes = async () => {
+    const fetchData = async () => {
       try {
-        const response = await api.get('dishes')
-        const formattedDishes = response.data.map((dish) => ({
-          id: dish.dishId,
-          imageUrl: dish.photo,
-          name: dish.name,
-        }))
-        setDishes(formattedDishes)
+        const ratedRes = await api.get('dishes/top-rated')
+        setTopRatedDishes(formatDishForCarousel(ratedRes.data))
+
+        const favRes = await api.get('dishes/top-favorited')
+        setTopFavoritedDishes(formatDishForCarousel(favRes.data))
+
       } catch (error) {
-        console.error('Error fetching dishes:', error)
+        console.error('Erro ao carregar carrosseis:', error)
       }
     }
 
-    getDishes()
+    fetchData()
   }, [])
+
+  const handleItemClick = (item) => {
+    navigate(`/dish/${item.id}`)
+  }
 
   return (
     <div>
       <Header />
-      <Carousel
-        title="Em destaque"
-        items={dishes}
-        itemWidth={170}
-        onItemClick={item => navigate(`/dish/${item.id}`)}
-      />
+
+      <div style={{ marginTop: '1.5rem' }}>
+        <Carousel
+          title="Mais Avaliados"
+          items={topRatedDishes}
+          itemWidth={170}
+          onItemClick={handleItemClick}
+        />
+      </div>
+
+      <div style={{ marginTop: '0.5rem' }}>
+        <Carousel
+          title="Favoritos da Comunidade"
+          items={topFavoritedDishes}
+          itemWidth={170}
+          onItemClick={handleItemClick}
+        />
+      </div>
+
       <div className="home-page-container">
+        <h3 className="feed-title" style={{ color: '#e3e3e3', marginLeft: '1rem', marginBottom: '1rem' }}>
+          Atividade Recente
+        </h3>
         <InfiniteFeed feedType="global" />
       </div>
     </div>
