@@ -15,7 +15,6 @@ export default function UserProfilePage() {
   const [profile, setProfile] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
-   const { user } = useAuth();
 
   const isMyProfile = user && user.userId === parseInt(userId);
 
