@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import './EditProfileForm.css' // Criaremos este CSS a seguir
+import './EditProfileForm.css'
 
 export default function EditProfileForm({ currentUser, onClose, onSave }) {
   const [name, setName] = useState(currentUser.name || '')
@@ -13,9 +13,8 @@ export default function EditProfileForm({ currentUser, onClose, onSave }) {
     setError('')
 
     try {
-      // Chama a função onSave passada pela UserProfilePage
       await onSave({ name, bio })
-      onClose() // Fecha o modal em caso de sucesso
+      onClose()
     } catch (err) {
       console.error('Erro ao salvar perfil:', err)
       setError(
@@ -46,7 +45,7 @@ export default function EditProfileForm({ currentUser, onClose, onSave }) {
             placeholder="Escreva algo sobre você..."
             value={bio}
             onChange={(e) => setBio(e.target.value)}
-            maxLength={300} // Limite de exemplo
+            maxLength={300}
           />
 
           {error && <p className="form-error">{error}</p>}

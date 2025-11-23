@@ -5,21 +5,20 @@ import Header from '../components/Header'
 import ProfileHeader from '../components/ProfileHeader'
 import ProfileTabs from '../components/ProfileTabs'
 import ProfileDishGrid from '../components/ProfileDishGrid'
-import EditProfileForm from '../components/EditProfileForm' // Importação correta
-import { useAuth } from '../context/AuthContext' // Importação correta
+import EditProfileForm from '../components/EditProfileForm'
+import { useAuth } from '../context/AuthContext'
 import './UserProfilePage.css'
 
 export default function UserProfilePage() {
-  const { userId } = useParams() // ID da URL (string)
+  const { userId } = useParams()
   const [profile, setProfile] = useState(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
   const [activeTab, setActiveTab] = useState('ratings')
 
   const [isEditing, setIsEditing] = useState(false)
-  const { user, login } = useAuth() // Obter o usuário logado
+  const { user, login } = useAuth()
 
-  // Compara o ID do usuário logado (number) com o ID da URL (string)
   const isOwnProfile = user && user.userId == userId
 
   useEffect(() => {
@@ -45,7 +44,7 @@ export default function UserProfilePage() {
     }
 
     const payload = {
-      authUserId: user.userId, // Verificação de segurança no backend
+      authUserId: user.userId,
       name: formData.name,
       biography: formData.bio,
     }
@@ -123,11 +122,6 @@ export default function UserProfilePage() {
 
         <ProfileDishGrid dishes={dishesToShow} emptyMessage={emptyMessage} />
       </div>
-
-      {/* AQUI ESTÁ A MUDANÇA:
-        Esta linha usa o componente 'EditProfileForm' que você importou.
-        Sem ela, o import fica cinza e o botão não tem o que abrir.
-      */}
       {isEditing && (
         <EditProfileForm
           currentUser={profile}
