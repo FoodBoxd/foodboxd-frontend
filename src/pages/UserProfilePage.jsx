@@ -16,13 +16,13 @@ export default function UserProfilePage() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
 
-  const isMyProfile = user && user.userId === parseInt(userId);
 
   const [activeTab, setActiveTab] = useState('ratings')
 
   const [isEditing, setIsEditing] = useState(false)
   const { user, login } = useAuth()
 
+  const isMyProfile = user && user.userId === parseInt(userId);
   const isOwnProfile = user && user.userId == userId
 
   useEffect(() => {
