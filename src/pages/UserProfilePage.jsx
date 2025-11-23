@@ -5,7 +5,7 @@ import Header from '../components/Header'
 import ProfileHeader from '../components/ProfileHeader'
 import ProfileTabs from '../components/ProfileTabs'
 import ProfileDishGrid from '../components/ProfileDishGrid'
-import LoadingSpinner from '../components/LoadingSpinner' 
+import LoadingSpinner from '../components/LoadingSpinner'
 import { useAuth } from '../context/AuthContext'
 import './UserProfilePage.css'
 
@@ -42,7 +42,7 @@ export default function UserProfilePage() {
     return (
       <>
         <Header />
-        <LoadingSpinner /> 
+        <LoadingSpinner />
       </>
     )
   }

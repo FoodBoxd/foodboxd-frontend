@@ -16,7 +16,7 @@
 
 .feed-dish-poster-link {
   display: block;
-  width: 65px; 
+  width: 65px;
   height: 65px;
   border-radius: 6px;
   overflow: hidden;
@@ -31,7 +31,7 @@
 
 .feed-post-main {
   flex-grow: 1;
-  width: calc(100% - 65px - 1rem); 
+  width: calc(100% - 65px - 1rem);
 }
 
 .feed-post-header {
@@ -45,7 +45,7 @@
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background-color: #f77f00; 
+  background-color: #f77f00;
   color: #fff;
   display: flex;
   align-items: center;
@@ -80,7 +80,7 @@
 }
 
 .feed-metadata .star-rating {
-  font-size: 0.9rem; 
+  font-size: 0.9rem;
 }
 .feed-metadata .star-svg {
   width: 1em;
@@ -94,7 +94,7 @@
 
 .feed-post-comment {
   margin-top: 0.75rem;
-  background-color: #242424; 
+  background-color: #242424;
   border-radius: 6px;
   padding: 0.75rem 1rem;
 }

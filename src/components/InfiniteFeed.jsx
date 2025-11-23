@@ -29,15 +29,15 @@ export default function InfiniteFeed({ feedType, userId }) {
       }
 
       const response = await api.get('ratings/feed', { params });
-      
+
       setPosts((prevPosts) => {
-        const newPosts = response.data.items;
+        const newPosts = response.data.items.reverse();
         const existingIds = new Set(prevPosts.map(p => p.ratingId));
         const filteredPosts = newPosts.filter(p => !existingIds.has(p.ratingId));
         return [...prevPosts, ...filteredPosts];
       });
-      
-      setPage(pageToFetch + 1); 
+
+      setPage(pageToFetch + 1);
       setHasMore(response.data.hasMorePages);
 
     } catch (err) {
@@ -64,7 +64,7 @@ export default function InfiniteFeed({ feedType, userId }) {
     return () => {
       if (observer.current) observer.current.disconnect();
     };
-  }, [fetchPosts, loading, hasMore, page]); 
+  }, [fetchPosts, loading, hasMore, page]);
 
   useEffect(() => {
     setPosts([]);
@@ -74,14 +74,14 @@ export default function InfiniteFeed({ feedType, userId }) {
 
     if (observer.current) observer.current.disconnect();
     fetchPosts(1);
-  }, [feedType, userId]); 
+  }, [feedType, userId]);
 
   return (
     <div className="feed-container">
       {posts.map(post => (
         <FeedPost key={post.ratingId} post={post} />
       ))}
-      
+
       {/* Sentinela de Carregamento */}
       <div ref={sentinelRef} className="feed-sentinel">
         {loading && <div className="feed-loading-spinner" />}
@@ -89,7 +89,7 @@ export default function InfiniteFeed({ feedType, userId }) {
       </div>
 
       {error && <div className="feed-error">{error}</div>}
-      
+
       {!loading && posts.length === 0 && !error && (
          <p className="feed-empty">
            {feedType === 'user' ? 'Este usuário ainda não avaliou nada.' : 'Nenhuma avaliação encontrada.'}
