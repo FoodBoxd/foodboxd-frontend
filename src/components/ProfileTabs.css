@@ -1,34 +1,40 @@
 .profile-tabs {
   display: flex;
-  gap: 1rem;
-  border-bottom: 1px solid #2a3440;
-  margin-top: 2rem;
-  margin-bottom: 1.5rem;
+  justify-content: center;
+  margin: 2rem 0 1.5rem 0;
+  border-bottom: 1px solid var(--border-subtle);
+  gap: 2rem;
 }
 
 .tab-btn {
-  border-radius: 0;
   background: none;
   border: none;
-  color: #9fb3c8;
-  font-size: 1rem;
-  font-weight: 600;
-  padding: 0.75rem 0.25rem;
-  cursor: pointer;
-  border-bottom: 3px solid transparent;
-  transition: color 0.2s, border-color 0.2s;
+  padding: 1rem 0;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  position: relative;
+  border-radius: 0;
+  transition: color 0.2s;
 }
 
 .tab-btn:hover {
-  color: #fff;
-  filter: drop-shadow(0px 0px 10px rgb(101, 101, 101, 0.7))
+  background: none;
+  color: var(--text-main);
 }
 
 .tab-btn.active {
-  color: #fff;
-  border-bottom-color: #37a762;
+  color: var(--brand-green);
 }
 
-.tab-btn:focus {
-  outline: none;
+.tab-btn.active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: var(--brand-green);
+  border-radius: 3px 3px 0 0;
 }

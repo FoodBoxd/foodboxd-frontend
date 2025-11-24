@@ -1,8 +1,23 @@
 import React from 'react'
 import UserAvatar from './UserAvatar'
 import './ProfileHeader.css'
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 
-export default function ProfileHeader({ name, bio, isOwnProfile, onEditClick, profilePhoto }) {
+export default function ProfileHeader({
+  name,
+  bio,
+  isOwnProfile,
+  onEditClick,
+  profilePhoto
+}) {
+  const navigate = useNavigate();
+  const { logout } = useAuth();
+
+  const handleLogout = () => {
+    logout();
+    navigate('/login');
+  };
 
   return (
     <div className="profile-header">
@@ -22,9 +37,14 @@ export default function ProfileHeader({ name, bio, isOwnProfile, onEditClick, pr
       </div>
       <div className="profile-actions">
         {isOwnProfile && (
-          <button className="edit-profile-btn" onClick={onEditClick}>
-            Editar Perfil
-          </button>
+          <div>
+            <button className="edit-profile-btn" onClick={onEditClick}>
+              Editar Perfil
+            </button>
+            <button onClick={handleLogout} className="logout-button">
+              Sair
+            </button>
+          </div>
         )}
       </div>
     </div>

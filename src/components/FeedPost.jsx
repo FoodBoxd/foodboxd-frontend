@@ -1,58 +1,58 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import StarRating from './StarRating';
-import UserAvatar from './UserAvatar';
-import './FeedPost.css';
+import React from 'react'
+import { Link } from 'react-router-dom'
+import StarRating from './StarRating'
+import UserAvatar from './UserAvatar'
+import './FeedPost.css'
 
 function formatTimeAgo(dateString) {
-  const date = new Date(dateString);
-  const now = new Date();
-  const seconds = Math.floor((now - date) / 1000);
+  const date = new Date(dateString)
+  const now = new Date()
+  const seconds = Math.floor((now - date) / 1000)
 
-  let interval = seconds / 31536000;
-  if (interval > 1) return Math.floor(interval) + "a";
+  let interval = seconds / 31536000
+  if (interval > 1) return Math.floor(interval) + 'a'
 
-  interval = seconds / 2592000;
-  if (interval > 1) return Math.floor(interval) + "m";
+  interval = seconds / 2592000
+  if (interval > 1) return Math.floor(interval) + 'm'
 
-  interval = seconds / 604800;
-  if (interval > 1) return Math.floor(interval) + " sem";
+  interval = seconds / 604800
+  if (interval > 1) return Math.floor(interval) + ' sem'
 
-  interval = seconds / 86400;
-  if (interval > 1) return Math.floor(interval) + "d";
+  interval = seconds / 86400
+  if (interval > 1) return Math.floor(interval) + 'd'
 
-  interval = seconds / 3600;
-  if (interval > 1) return Math.floor(interval) + "h";
+  interval = seconds / 3600
+  if (interval > 1) return Math.floor(interval) + 'h'
 
-  interval = seconds / 60;
-  if (interval > 1) return Math.floor(interval) + "min";
+  interval = seconds / 60
+  if (interval > 1) return Math.floor(interval) + 'min'
 
-  return "agora";
+  return 'agora'
 }
 
-
 export default function FeedPost({ post }) {
-  const { score, comment, createdAt, user, dish } = post;
+  const { score, comment, createdAt, user, dish } = post
 
-  const timeAgo = formatTimeAgo(createdAt);
+  const timeAgo = formatTimeAgo(createdAt)
 
   return (
     <div className="feed-post-card">
       <div className="feed-post-sidebar">
         <Link to={`/dish/${dish.dishId}`} className="feed-dish-poster-link">
-          <img
-            src={dish.photo}
-            alt={dish.name}
-            className="feed-dish-poster"
-          />
+          <img src={dish.photo} alt={dish.name} className="feed-dish-poster" />
         </Link>
       </div>
 
       <div className="feed-post-main">
         <div className="feed-post-header">
-        <Link to={`/user/${user.userId}`} className="feed-user-avatar-link">
-          <UserAvatar src={user.profilePhoto} name={user.name} size="32px" fontSize="1rem" />
-        </Link>
+          <Link to={`/user/${user.userId}`} className="feed-user-avatar-link">
+            <UserAvatar
+              src={user.profilePhoto}
+              name={user.name}
+              size="32px"
+              fontSize="1rem"
+            />
+          </Link>
           <div className="feed-header-info">
             <span className="feed-text-line">
               <Link to={`/user/${user.userId}`} className="feed-user-name">
@@ -77,5 +77,5 @@ export default function FeedPost({ post }) {
         )}
       </div>
     </div>
-  );
+  )
 }

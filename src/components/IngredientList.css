@@ -5,7 +5,7 @@
   margin-top: 0;
   margin-bottom: 1rem;
   padding-bottom: 0.5rem;
-  border-bottom: 1px solid var(--header-border, #2a3440); /* Reusa variável do Header.css */
+  border-bottom: 1px solid var(--header-border, #2a3440);
 }
 
 .ingredient-tags {
@@ -17,8 +17,7 @@
 .ingredient-tag {
   display: inline-block;
   padding: 0.5rem 0.85rem;
-  background-color: #242424; /* Baseado no UserForm.css #createUserCard */
-  border: 1px solid #3a3a3a; /* Baseado no UserForm.css input */
+  border: 1px solid #242424;
   border-radius: 8px;
   color: #e6edf3;
   text-decoration: none;
@@ -28,13 +27,13 @@
 }
 
 .ingredient-tag:hover {
-  background-color: #3a3a3a;
-  border-color: #37a762; /* Verde do UserForm.css button */
+  background-color: #242424;
+  border-color: var(--brand-orange);
   color: #fff;
 }
 
 .ingredient-quantity {
-  color: #9fb3c8; /* muted */
+  color: var(--brand-orange);
   margin-left: 0.5rem;
   font-size: 0.8rem;
 }

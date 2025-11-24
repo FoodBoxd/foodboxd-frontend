@@ -92,8 +92,8 @@ export default function ReviewForm({ dishId, onSubmitSuccess }) {
           />
         ))}
       </div>
-
       <textarea
+        type="text"
         className="comment-textarea"
         placeholder="Escreva um comentário (opcional)..."
         value={comment}

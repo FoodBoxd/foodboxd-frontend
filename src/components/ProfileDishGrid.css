@@ -1,29 +1,30 @@
 .profile-dish-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 12px;
+  margin-top: 1rem;
 }
 
 .dish-grid-card {
-  width: 100%;
-  border-radius: 8px;
+  position: relative;
+  border-radius: var(--radius-sm);
   overflow: hidden;
-  background-color: #242424;
-  border: 1px solid #3a3a3a;
+  aspect-ratio: 2/3;
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: none;
 }
 
 .dish-grid-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  border-color: #37a762;
+  transform: scale(1.05);
+  z-index: 2;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+  border: 2px solid var(--brand-green);
 }
 
 .dish-card-poster {
   width: 100%;
-  aspect-ratio: 1 / 1;
-  background-color: #1e1e1e;
+  height: 100%;
 }
 
 .dish-card-poster img {
@@ -33,49 +34,37 @@
 }
 
 .dish-card-meta {
-  padding: 0.75rem;
-  text-align: left;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0,0,0,0.9));
+  padding: 1rem 0.5rem 0.5rem;
+  opacity: 0;
+  transition: opacity 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dish-grid-card:hover .dish-card-meta {
+  opacity: 1;
 }
 
 .dish-card-name {
+  font-size: 0.8rem;
+  text-align: center;
+  margin-bottom: 4px;
   color: #fff;
   font-weight: 600;
-  font-size: 1rem;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: block;
-  margin-bottom: 0.25rem;
-}
-
-.dish-card-rating .star-svg {
-  width: 1em;
-  height: 1em;
 }
 
 .profile-grid-empty {
-  color: #9fb3c8;
-  font-style: italic;
-  padding: 2rem 0;
+  grid-column: 1 / -1;
   text-align: center;
-}
-
-
-@media (min-width: 600px) {
-  .profile-dish-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-@media (min-width: 768px) {
-  .profile-dish-grid {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.25rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  .profile-dish-grid {
-    grid-template-columns: repeat(6, 1fr);
-  }
+  padding: 4rem;
+  color: var(--text-muted);
+  background: var(--bg-input);
+  border-radius: var(--radius-md);
+  border: 1px dashed var(--border-subtle);
 }
