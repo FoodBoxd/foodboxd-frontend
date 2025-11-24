@@ -9,7 +9,7 @@
   position: relative;
   border-radius: var(--radius-sm);
   overflow: hidden;
-  aspect-ratio: 2/3; /* Formato poster clássico */
+  aspect-ratio: 2/3;
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
   border: none;
@@ -33,7 +33,6 @@
   object-fit: cover;
 }
 
-/* Overlay de informações que aparece no hover ou fica sutil */
 .dish-card-meta {
   position: absolute;
   bottom: 0;

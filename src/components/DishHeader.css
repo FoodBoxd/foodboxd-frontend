@@ -6,7 +6,6 @@
   border-bottom: 1px solid var(--border-subtle);
 }
 
-/* Efeito de fundo desfocado com a cor do prato (simulado) */
 .dish-header-container::before {
   content: '';
   position: absolute;
