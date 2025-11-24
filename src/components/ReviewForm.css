@@ -7,10 +7,6 @@
   transition: border-color 0.3s;
 }
 
-.add-review-form:focus-within {
-  border-color: var(--brand-blue);
-}
-
 .form-header {
   display: flex;
   justify-content: space-between;
@@ -66,7 +62,6 @@
 
 .comment-textarea:focus {
   outline: none;
-  border-color: var(--brand-blue);
 }
 
 .form-footer {
@@ -77,11 +72,11 @@
 }
 
 .submit-review-btn {
-  background-color: var(--brand-blue);
+  background-color: var(--brand-orange);
   color: #fff;
   padding: 0.6rem 1.5rem;
 }
 
 .submit-review-btn:hover {
-  background-color: #2563eb;
+  background-color: #e08300;
 }

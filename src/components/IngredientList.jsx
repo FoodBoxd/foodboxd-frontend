@@ -19,7 +19,6 @@ export default function IngredientList({ ingredients }) {
         {ingredients.map((item, index) => (
           <Link
             key={index}
-            // Navega para uma futura página de busca
             to={`/search?q=${encodeURIComponent(item.name)}`}
             className="ingredient-tag"
           >

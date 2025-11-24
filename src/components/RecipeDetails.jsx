@@ -11,7 +11,6 @@ export default function RecipeDetails({ instructions }) {
     );
   }
 
-  // Quebra as instruções por linha para formatar como lista
   const instructionSteps = instructions.split('\n').filter(step => step.trim() !== '');
 
   return (
