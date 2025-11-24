@@ -43,7 +43,7 @@
 }
 
 .edit-profile-btn {
-  margin-top: 1rem;
+  margin: 1rem 0.5rem 0 0.5rem;
   background-color: transparent;
   border: 1px solid var(--border-subtle);
   font-size: 0.85rem;
@@ -60,13 +60,13 @@
     align-items: flex-start;
     text-align: left;
   }
-  
+
   .profile-info {
     align-items: flex-start;
     flex: 1;
     padding-top: 10px;
   }
-  
+
   .profile-actions {
     align-self: flex-start;
     margin-top: 10px;

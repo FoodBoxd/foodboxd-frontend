@@ -1,17 +1,11 @@
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import "./Header.css";
 import UserAvatar from "./UserAvatar";
 import appLogo from "../assets/FoodboxdLogo.png";
 
 export default function Header() {
-  const navigate = useNavigate();
-  const { user, isAuthenticated, logout } = useAuth();
-
-  const handleLogout = () => {
-    logout();
-    navigate('/login');
-  };
+  const { user, isAuthenticated } = useAuth();
 
   return (
     <header className="site-header" role="banner">
@@ -33,7 +27,6 @@ export default function Header() {
             <NavLink
               to="/search"
               className={({ isActive }) => isActive ? "nav-link-dish active" : "nav-link-dish"}
-              
             >
               Pratos
             </NavLink>
@@ -51,10 +44,6 @@ export default function Header() {
                   fontSize="0.9rem"
                 />
               </Link>
-
-              <button onClick={handleLogout} className="logout-button">
-                Sair
-              </button>
             </>
           ) : (
             <>

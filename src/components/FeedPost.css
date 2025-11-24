@@ -70,12 +70,13 @@
 }
 
 .feed-dish-name {
-  color: var(--brand-green);
+  color: var(--brand-orange);
   font-weight: 600;
 }
 
 .feed-dish-name:hover {
   text-decoration: underline;
+  color: var(--brand-green);
 }
 
 .feed-metadata {

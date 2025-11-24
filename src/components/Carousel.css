@@ -68,9 +68,9 @@
 
 
 .carousel-nav:hover:not(:disabled) {
-  background-color: var(--brand-blue);
+  background-color: var(--brand-orange);
   color: white;
-  border-color: var(--brand-blue);
+  border-color: var(--brand-orange);
 }
 
 .carousel-nav.left { left: -20px; }

@@ -36,7 +36,7 @@
 
 .search-input:focus {
   outline: none;
-  border-color: var(--brand-green);
+  border-color: var(--brand-blue);
   background-color: var(--bg-input);
   box-shadow: 0 0 0 1px var(--brand-blue);
 }
@@ -54,7 +54,7 @@
   border-bottom: 1px solid var(--border-subtle);
   padding-bottom: 0.5rem;
   margin-bottom: 1.5rem;
-  color: var(--brand-green);
+  color: var(--brand-blue);
 }
 
 .results-grid {

@@ -1,31 +1,25 @@
 :root {
-  /* Cores Baseadas na Logo */
-  --brand-orange: #ff9f1c; /* Pão do Burger */
-  --brand-green: #2ec4b6;  /* Garfo */
-  --brand-blue: #3a86ff;   /* Tigela/Vapor */
-  
-  /* Tons de Fundo (Dark Mode Minimalista) */
-  --bg-app: #0f1014;       /* Fundo principal muito escuro */
-  --bg-card: #181a20;      /* Cartões e seções */
-  --bg-card-hover: #22252d; 
+  --brand-orange: #ff9f1c;
+  --brand-green: #149d5f;
+  --brand-blue: #3a86ff;
+
+  --bg-app: #0f1014;
+  --bg-card: #181a20;
+  --bg-card-hover: #22252d;
   --bg-input: #131519;
 
-  /* Tipografia */
   --text-main: #ffffff;
   --text-secondary: #9ca3af;
   --text-muted: #6b7280;
 
-  /* Bordas e Detalhes */
   --border-subtle: #2a2e35;
   --border-focus: var(--brand-green);
-  
-  /* Espaçamento e Layout */
+
   --radius-sm: 6px;
   --radius-md: 12px;
   --radius-lg: 20px;
   --radius-full: 9999px;
 
-  /* Fontes */
   font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.6;
   font-weight: 400;
@@ -70,7 +64,6 @@ p {
   color: var(--text-secondary);
 }
 
-/* Reset de Botão Global */
 button {
   border-radius: var(--radius-sm);
   border: 1px solid transparent;
@@ -97,7 +90,6 @@ button:disabled {
   cursor: not-allowed;
 }
 
-/* Scrollbar Customizada */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;

@@ -59,14 +59,14 @@
 }
 
 .nav-link-dish.active {
-  color: var(--brand-green);
+  color: var(--brand-blue);
 }
 
 .nav-link-home.active::after {
   background-color: var(--brand-orange);
 }
 .nav-link-dish.active::after {
-  background-color: var(--brand-green);
+  background-color: var(--brand-blue);
 }
 
 .nav-link-home.active::after,
@@ -88,25 +88,22 @@
 
 .nav-link-button,
 .logout-button {
-  padding: 8px 16px;
-  border-radius: var(--radius-full);
-  font-size: 0.85rem;
-  font-weight: 600;
+  margin: 1rem 0.5rem 0 0.5rem;
   background-color: transparent;
   border: 1px solid var(--border-subtle);
-  color: var(--text-main);
+  font-size: 0.85rem;
+  padding: 8px 16px;
 }
 
 .nav-link-button:hover,
 .logout-button:hover {
   border-color: var(--text-secondary);
-  background-color: var(--bg-card-hover);
 }
 
 .nav-link-button.register {
   background-color: var(--brand-green);
   border-color: var(--brand-green);
-  color: #000; /* Contraste com verde */
+  color: #000;
 }
 
 .nav-link-button.register:hover {

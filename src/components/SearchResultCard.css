@@ -1,4 +1,3 @@
-/* Estilo genérico para cards (usado no carrossel também via inline styles, mas vamos formalizar) */
 .carousel-card,
 .search-result-card {
   flex-shrink: 0;
@@ -16,12 +15,12 @@
 .search-result-card:hover {
   transform: translateY(-6px);
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
-  border-color: var(--brand-green);
+  border-color: var(--brand-orange);
 }
 
 .poster, .search-card-poster {
   width: 100%;
-  aspect-ratio: 1 / 1; /* Quadrado moderno */
+  aspect-ratio: 1 / 1;
   overflow: hidden;
   background-color: #222;
 }
