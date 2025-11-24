@@ -137,7 +137,6 @@ function RecipePage() {
             <RecipeDetails instructions={dish.recipe?.instructions} />
             <IngredientList ingredients={dish.recipe?.ingredients} />
           </div>
-          <div className="recipe-sidebar"></div>
         </div>
         <ReviewSection
           ratings={dish.ratings}

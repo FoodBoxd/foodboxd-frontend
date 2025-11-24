@@ -29,6 +29,7 @@
   font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.6;
   font-weight: 400;
+  overflow-x: hidden;
 
   color-scheme: dark;
   color: var(--text-main);
@@ -89,7 +90,6 @@ button:hover {
 
 button:focus, button:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 2px var(--bg-app), 0 0 0 4px var(--brand-green);
 }
 
 button:disabled {

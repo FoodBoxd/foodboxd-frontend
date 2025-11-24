@@ -2,7 +2,7 @@
   background-color: var(--bg-input);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
-  padding: 1.5rem;
+  padding:  1rem 1.5rem 1.5rem 1.2rem;
   margin-bottom: 2.5rem;
   transition: border-color 0.3s;
 }
@@ -54,13 +54,13 @@
 
 .comment-textarea {
   width: 100%;
+  margin: 0 auto;
   background-color: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-sm);
-  padding: 1rem;
   color: var(--text-main);
   font-size: 1rem;
-  resize: vertical;
+  resize: none;
   min-height: 100px;
 }
 

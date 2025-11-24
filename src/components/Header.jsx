@@ -26,14 +26,13 @@ export default function Header() {
           <nav className="header-nav" aria-label="Primary">
             <NavLink
               to="/"
-              className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}
-              end
+              className={({ isActive }) => isActive ? "nav-link-home active" : "nav-link-home"}
             >
               Início
             </NavLink>
             <NavLink
               to="/search"
-              className={({ isActive }) => isActive ? "nav-link active" : "nav-link"}
+              className={({ isActive }) => isActive ? "nav-link-dish active" : "nav-link-dish"}
               
             >
               Pratos
@@ -51,7 +50,6 @@ export default function Header() {
                   size="32px"
                   fontSize="0.9rem"
                 />
-                <span className="header-user-name">{user.name}</span>
               </Link>
 
               <button onClick={handleLogout} className="logout-button">
