@@ -35,8 +35,9 @@
   gap: var(--gap, 16px);
   overflow-x: auto;
   scroll-snap-type: x mandatory;
-  scrollbar-width: none; /* Firefox */
-  padding-bottom: 1rem; /* Espaço para sombra */
+  scrollbar-width: none;
+  padding-bottom: 1rem;
+  padding-top: 1rem;
   padding-left: 4px;
 }
 
