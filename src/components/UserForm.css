@@ -49,13 +49,13 @@
 
 #userForm input:focus {
   outline: none;
-  border-color: var(--brand-green);
-  box-shadow: 0 0 0 3px rgba(46, 196, 182, 0.15);
+  border-color: var(--brand-orange);
+  box-shadow: 0 0 0 3px rgba(116, 91, 12, 0.3);
 }
 
 #userForm button {
   margin-top: 1rem;
-  background: linear-gradient(135deg, var(--brand-green), #25a59a);
+  background: linear-gradient(135deg, var(--brand-orange), #FFD71C);
   color: #000;
   border: none;
   padding: 12px;
@@ -65,7 +65,7 @@
 
 #userForm button:hover {
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(46, 196, 182, 0.3);
+  box-shadow: 0 4px 12px rgba(245, 200, 53, 0.3);
 }
 
 #userForm button:disabled {
@@ -90,6 +90,6 @@
 }
 
 .toggle-link a {
-  color: var(--brand-green);
+  color: var(--brand-orange);
   font-weight: 600;
 }
