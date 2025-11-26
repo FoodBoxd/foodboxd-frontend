@@ -31,7 +31,7 @@ export default function InfiniteFeed({ feedType, userId }) {
       const response = await api.get('ratings/feed', { params });
 
       setPosts((prevPosts) => {
-        const newPosts = response.data.items.reverse();
+        const newPosts = response.data.items;
         const existingIds = new Set(prevPosts.map(p => p.ratingId));
         const filteredPosts = newPosts.filter(p => !existingIds.has(p.ratingId));
         return [...prevPosts, ...filteredPosts];
